@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.VictorinWindowController">
+    <children>
+        <Button fx:id="WelcomeButton" layoutX="484.0" layoutY="86.0" mnemonicParsing="false" onAction="#WelcomeButtonAction" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Начать играть" textFill="#fce4ff">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+        </Button>
+        <TextField fx:id="LoginTextFild" layoutX="119.0" layoutY="92.0" prefHeight="32.0" prefWidth="300.0" promptText="Логин">
+            <font>
+                <Font name="Times New Roman" size="18.0" />
+            </font>
+        </TextField>
+        <Label fx:id="HellowComment" layoutX="136.0" layoutY="257.0" prefHeight="40.0" prefWidth="516.0" textFill="PURPLE">
+            <font>
+                <Font name="Times New Roman" size="36.0" />
+            </font>
+        </Label>
+        <Label fx:id="Comment" layoutX="58.0" layoutY="9.0" prefHeight="79.0" prefWidth="705.0" text="Ведите имя под которым продолжите играть" textFill="PURPLE">
+            <font>
+                <Font name="Times New Roman" size="36.0" />
+            </font>
+        </Label>
+      <Label fx:id="Queston" layoutX="22.0" layoutY="138.0" prefHeight="196.0" prefWidth="758.0" style="-fx-border-radius: 50; -fx-border-color: #800080;" textFill="PURPLE">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="AnswerButton" layoutX="509.0" layoutY="344.0" mnemonicParsing="false" onAction="#AnswerButtonAction" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Ответить" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <TextField fx:id="Answer" layoutX="119.0" layoutY="350.0" prefHeight="32.0" prefWidth="300.0" promptText="Ваш ответ">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="ReversButton" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#ReversButtonAction" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
