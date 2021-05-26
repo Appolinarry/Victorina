@@ -5,7 +5,8 @@ import java.util.Random;
 public class TipicalQueston extends  Victorin{
 
     Random random = new Random();
-    public TipicalQueston(String queston, String answera,String answerb,String answerc, String rightanswer, int number, int count) {
+    public TipicalQueston(int number,String queston, String answera,String answerb,String answerc, String rightanswer,
+                          int count, String nametopic) {
         this.Queston = queston;
         this.AnswerA = answera;
         this.AnswerB = answerb;
@@ -13,6 +14,7 @@ public class TipicalQueston extends  Victorin{
         this.RightAnswer = rightanswer;
         this.NumberQueston = number;
         this.CountQueston = count;
+        this.NameTopic = nametopic;
     }
     @Override
     public String  toString(){

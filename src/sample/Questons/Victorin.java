@@ -8,4 +8,5 @@ public abstract class Victorin {
     protected String RightAnswer;//Правильный вариант ответа
     protected int NumberQueston;//Номер вопроса в таблице
     protected int CountQueston;//очки за вопрос
+    protected String NameTopic; //название темы
 }
