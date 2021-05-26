@@ -7,24 +7,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.TableWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.TableWindowController">
     <children>
-        <Label layoutX="206.0" layoutY="21.0" text="Результаты прошлых игр" textFill="PURPLE">
+        <Label layoutX="256.0" layoutY="24.0" text="Результаты прошлых игр" textFill="PURPLE">
             <font>
-                <Font name="Times New Roman" size="36.0" />
+                <Font name="Times New Roman" size="64.0" />
             </font>
         </Label>
-        <Button fx:id="ReversButton" layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#ReversButtonAction" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
+        <Button fx:id="ReversButton" layoutX="14.0" layoutY="842.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
         </Button>
-      <TableView fx:id="RecordCount" layoutX="126.0" layoutY="69.0" prefHeight="309.0" prefWidth="559.0" style="-fx-background-radius: 50;">
+      <TableView fx:id="RecordCount" layoutX="83.0" layoutY="110.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-radius: 50;">
         <columns>
           <TableColumn fx:id="NumberPerson" prefWidth="44.0" text="№" />
-          <TableColumn fx:id="Nicname" prefWidth="134.0" text="Имя игрока" />
-            <TableColumn fx:id="NameGame" prefWidth="229.0" text="Название игры" />
-            <TableColumn fx:id="GameCount" prefWidth="137.0" text="Счет" />
+          <TableColumn fx:id="Nicname" prefWidth="150.0" text="Имя игрока" />
+            <TableColumn fx:id="NameGame" prefWidth="150.0" text="Название темы" />
+            <TableColumn fx:id="GameCount" prefWidth="120.0" text="Счет" />
+            <TableColumn fx:id="Title" prefWidth="150.0" text="Титул" />
+            <TableColumn fx:id="Comment" prefWidth="225.0" text="Комментарий" />
+            <TableColumn fx:id="LifeCount" prefWidth="100.0" text="Жизни в игре" />
+            <TableColumn fx:id="OurCount" prefWidth="100.0" text="Ошибки" />
         </columns>
       </TableView>
     </children>
