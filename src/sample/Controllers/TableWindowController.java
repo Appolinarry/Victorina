@@ -13,43 +13,43 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.Person.BDPerson;
-import sample.Person.Person;
+import sample.Person.Gamer;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class TableWindowController {
 
-    private ObservableList<Person> PersonData = FXCollections.observableArrayList();
+    private ObservableList<Gamer> PersonData = FXCollections.observableArrayList();
     @FXML
     private Button ReversButton;
 
     @FXML
-    private TableView<Person> RecordCount;
+    private TableView<Gamer> RecordCount;
 
     @FXML
-    private TableColumn<Person, Integer> NumberPerson;
+    private TableColumn<Gamer, Integer> NumberPerson;
 
     @FXML
-    private TableColumn<Person, String> Nicname;
+    private TableColumn<Gamer, String> Nicname;
 
     @FXML
-    private TableColumn<Person, String> NameGame;
+    private TableColumn<Gamer, String> NameGame;
 
     @FXML
-    private TableColumn<Person, Integer> GameCount;
+    private TableColumn<Gamer, Integer> GameCount;
 
     @FXML
-    private TableColumn<Person, String> Title;
+    private TableColumn<Gamer, String> Title;
 
     @FXML
-    private TableColumn<Person, String> Comment;
+    private TableColumn<Gamer, String> Comment;
 
     @FXML
-    private TableColumn<Person, Integer> LifeCount;
+    private TableColumn<Gamer, Integer> LifeCount;
 
     @FXML
-    private TableColumn<Person, Integer> OurCount;
+    private TableColumn<Gamer, Integer> OurCount;
 
 
     @FXML
@@ -73,14 +73,14 @@ public class TableWindowController {
         BDPerson.readDB();//Считываем значения с базы данных
         PersonData = BDPerson.getPersonData();//достаем считанные значения
         // Устанавливаем тип и значение которое должно хранится в колонке
-        NumberPerson.setCellValueFactory(new PropertyValueFactory<Person,Integer>("NumberPerson"));
-        Nicname.setCellValueFactory(new PropertyValueFactory<Person, String>("Nicname"));
-        NameGame.setCellValueFactory(new PropertyValueFactory<Person, String>("NameGame"));
-        GameCount.setCellValueFactory(new PropertyValueFactory<Person, Integer>("GameCount"));
-        Title.setCellValueFactory(new  PropertyValueFactory<Person,String>("Title"));
-        Comment.setCellValueFactory(new PropertyValueFactory<Person,String>("Comment"));
-        LifeCount.setCellValueFactory(new PropertyValueFactory<Person,Integer>("LifeCount"));
-        OurCount.setCellValueFactory(new PropertyValueFactory<Person,Integer>("OurCount"));
+        NumberPerson.setCellValueFactory(new PropertyValueFactory<Gamer,Integer>("NumberPerson"));
+        Nicname.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Nicname"));
+        NameGame.setCellValueFactory(new PropertyValueFactory<Gamer, String>("NameGame"));
+        GameCount.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("GameCount"));
+        Title.setCellValueFactory(new  PropertyValueFactory<Gamer,String>("Title"));
+        Comment.setCellValueFactory(new PropertyValueFactory<Gamer,String>("Comment"));
+        LifeCount.setCellValueFactory(new PropertyValueFactory<Gamer,Integer>("LifeCount"));
+        OurCount.setCellValueFactory(new PropertyValueFactory<Gamer,Integer>("OurCount"));
         // Заполняем таблицу данными
         RecordCount.setItems(PersonData);
         ReversButton.setOnAction(e->{
@@ -96,7 +96,7 @@ public class TableWindowController {
             Parent root = loader.getRoot();
             stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("TableMenu");
+            stage.setTitle("Меню");
             stage.setResizable(false);
             stage.show();
         });

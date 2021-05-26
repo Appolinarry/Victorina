@@ -13,22 +13,10 @@ import java.sql.SQLException;
 public class ChoiseTopicController {
 
     @FXML
-    private Button RandomButton;
-
-    @FXML
     private Button ResultButton;
 
     @FXML
     private Button ReversButton;
-
-    @FXML
-    private Button WhereButton;
-
-    @FXML
-    private Button WhereButton1;
-
-    @FXML
-    private Button WhereButton11;
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {

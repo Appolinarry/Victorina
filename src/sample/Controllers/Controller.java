@@ -22,7 +22,8 @@ public class Controller {
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
         BDPerson.connectionBDPerson();//Подключаем БД Person
-        BDPerson.newTable();//создание таблички person
+        BDPerson.newTablePerson();//создание таблички person
+        BDPerson.newTableWinner();//создание таблички winner
         ReversButton.setOnAction(e->{//закрытие формы м приложения
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();
