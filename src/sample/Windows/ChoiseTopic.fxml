@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ChoiseTopicController">
+    <children>
+        <Label layoutX="389.0" layoutY="30.0" text="Выберете тему:" textFill="PURPLE">
+            <font>
+                <Font name="Times New Roman" size="64.0" />
+            </font>
+        </Label>
+        <Button fx:id="RandomButton" layoutX="651.0" layoutY="842.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Случайность" textFill="#fce4ff">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="ResultButton" layoutX="911.0" layoutY="842.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Посмотреть результаты" textFill="#fce4ff">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="ReversButton" layoutX="14.0" layoutY="842.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+        </Button>
+      <Button fx:id="WhereButton" layoutX="933.0" layoutY="156.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="А где это место?" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="WhereButton1" layoutX="839.0" layoutY="229.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Что за флаг?" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="WhereButton11" layoutX="711.0" layoutY="156.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Что за флаг?" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

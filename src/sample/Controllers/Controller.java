@@ -1,6 +1,5 @@
 package sample.Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,28 +20,25 @@ public class Controller {
     private Button ReversButton;
 
     @FXML
-    void WelcomeButtonAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        WelcomeButton.getScene().getWindow().hide();
-        Stage primaryStage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/sample/Windows/ChoiseGameWindow.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        primaryStage.setTitle("Выбор игры");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
-
-    @FXML
-    void ReversButtonAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        Stage stage = (Stage) ReversButton.getScene().getWindow();
-        stage.close();
-    }
-    @FXML
     void initialize() throws SQLException, ClassNotFoundException {
-        BDPerson.connectionBDPerson();
-        BDPerson.newTable();
+        BDPerson.connectionBDPerson();//Подключаем БД Person
+        BDPerson.newTable();//создание таблички person
+        ReversButton.setOnAction(e->{//закрытие формы м приложения
+            Stage stage = (Stage) ReversButton.getScene().getWindow();
+            stage.close();
+        });
+        WelcomeButton.setOnAction(e->{//Переход на форму с котегориями вопросов
+            WelcomeButton.getScene().getWindow().hide();
+            Stage primaryStage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/ChoiseTopic.fxml"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            primaryStage.setTitle("Выбор игры");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        });
     }
 }

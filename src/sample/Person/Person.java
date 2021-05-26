@@ -11,8 +11,8 @@ public class Person {
     private int OurCount;//Количество ошибок
 
     //Конструктор класса
-    public Person(int numberPerson, String nicname, String nameGame, int gameCount, String title, String comment,
-                  int lifeCount, int ourCount) {
+    public Person(int numberPerson, String nicname, String nameGame, int gameCount, String title,
+                  int lifeCount, int ourCount,String comment) {
         NumberPerson = numberPerson;
         Nicname = nicname;
         NameGame = nameGame;
@@ -69,9 +69,7 @@ public class Person {
         Title = title;
     }
 
-    public String getComment() {
-        return Comment;
-    }
+    public String getComment() { return Comment;  }
 
     public void setComment(String comment) {
         Comment = comment;

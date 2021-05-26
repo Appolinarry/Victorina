@@ -58,7 +58,7 @@ public class TableWindowController {
         Stage primaryStage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/sample/Windows/ChoiseGameWindow.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/sample/Windows/ChoiseTopic.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,8 +70,9 @@ public class TableWindowController {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
-        BDPerson.readDB();
-        PersonData = BDPerson.getPersonData();
+        BDPerson.readDB();//Считываем значения с базы данных
+        PersonData = BDPerson.getPersonData();//достаем считанные значения
+        // Устанавливаем тип и значение которое должно хранится в колонке
         NumberPerson.setCellValueFactory(new PropertyValueFactory<Person,Integer>("NumberPerson"));
         Nicname.setCellValueFactory(new PropertyValueFactory<Person, String>("Nicname"));
         NameGame.setCellValueFactory(new PropertyValueFactory<Person, String>("NameGame"));
