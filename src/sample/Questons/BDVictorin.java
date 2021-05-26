@@ -21,26 +21,28 @@ public class BDVictorin {
     public static void newTable1() throws ClassNotFoundException, SQLException{
         stab = victorin.createStatement();//создание экземпляра класса Statement
         stab.execute("CREATE TABLE if not exists 'typicalqueston' ('NumberQueston' INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " 'Queston' text, 'AnswerA' text,'AnswerB' text,'AnswerC' text,'RightAnswer' text,'Count'int,'NameTopic' text );");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
+                " 'Queston' text, 'AnswerA' text,'AnswerB' text,'AnswerC' text,'RightAnswer' text,'Count'int," +
+                "'NameTopic' text, 'FotoName' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
         System.out.println("Таблица Студент1 существует");
     }
     // cоздание таблицы БД
     public static void newTable2() throws ClassNotFoundException, SQLException{
         stab = victorin.createStatement();//создание экземпляра класса Statement
         stab.execute("CREATE TABLE if not exists 'untypicalqueston' ('NumberQueston' INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " 'Queston' text, 'AnswerA' text,'AnswerB' text,'AnswerC' text,'AnswerD' text,'RightAnswer' text,'Count'int,'NameTopic' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
+                " 'Queston' text, 'AnswerA' text,'AnswerB' text,'AnswerC' text,'AnswerD' text,'RightAnswer' text,'Count'int," +
+                "'NameTopic' text,'FotoName' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
         System.out.println("Таблица Студент2 существует");
     }
     // заполнение таблицы БД
     public static void writeDB1() throws SQLException{
         stab.execute("INSERT INTO 'typicalqueston' ('NumberQueston','Queston','AnswerA','AnswerB','AnswerC','RightAnswer'" +
-                " ,'Count','NameTopic') VALUES ('', '', '','', '', '','',''); ");
+                " ,'Count','NameTopic','FotoName') VALUES ('', '', '','', '', '','','',''); ");
         System.out.println("Таблица заполнена");
     }
     // заполнение таблицы БД
     public static void writeDB2() throws SQLException{
         stab.execute("INSERT INTO 'untypicalqueston' ('NumberQueston','Queston','AnswerA','AnswerB','AnswerC'," +
-                "'AnswerD','RightAnswer','Count','NameTopic') VALUES ('', '', '','', '', '','','',''); ");
+                "'AnswerD','RightAnswer','Count','NameTopic','FotoName') VALUES ('', '', '','', '', '','','','',''); ");
         System.out.println("Таблица заполнена");
     }
     // вывод всех данных из таблицы
@@ -51,7 +53,7 @@ public class BDVictorin {
                     result.getString("Queston"),result.getString("AnswerA"),
                     result.getString("AnswerB"),result.getString("AnswerC"),
                     result.getString("RightAnswer"),result.getInt("Count"),
-                    result.getString("NameTopic"));
+                    result.getString("NameTopic"),result.getString("FotoName"));
             VictorinLits.add(tipicalQueston);
         }
         result = stab.executeQuery("SELECT * FROM untypicalqueston"); //выборки данных с помощью команды SELECT
@@ -60,7 +62,8 @@ public class BDVictorin {
                     result.getString("Queston"),result.getString("AnswerA"),
                     result.getString("AnswerB"),result.getString("AnswerC"),
                     result.getString("AnswerD"),result.getString("RightAnswer"),
-                    result.getInt("Count"),result.getString("NameTopic"));
+                    result.getInt("Count"),result.getString("NameTopic"),
+                    result.getString("FotoName"));
             VictorinLits.add(untipicalQueston);
         }
         Collections.shuffle(VictorinLits);
@@ -73,23 +76,22 @@ public class BDVictorin {
     public static void readDB1(String topic) throws ClassNotFoundException, SQLException
     {
         result = stab.executeQuery("SELECT * FROM typicalqueston where 'NameTopic' = '" + topic + "'"); //выборки данных с помощью команды SELECT
-        while(result.next())
-        {
+        while(result.next()) {
             TipicalQueston tipicalQueston =new TipicalQueston(result.getInt("NumberQueston"),
                     result.getString("Queston"),result.getString("AnswerA"),
                     result.getString("AnswerB"),result.getString("AnswerC"),
                     result.getString("RightAnswer"),result.getInt("Count"),
-                    result.getString("NameTopic"));
+                    result.getString("NameTopic"),result.getString("FotoName"));
             VictorinLits.add(tipicalQueston);
         }
         result = stab.executeQuery("SELECT * FROM untypicalqueston where 'NameTopic' = '\" + topic + \"'\""); //выборки данных с помощью команды SELECT
-        while(result.next())
-        {
+        while(result.next()) {
             SomeUntipicalQueston untipicalQueston =new SomeUntipicalQueston(result.getInt("NumberQueston"),
                     result.getString("Queston"),result.getString("AnswerA"),
                     result.getString("AnswerB"),result.getString("AnswerC"),
                     result.getString("AnswerD"),result.getString("RightAnswer"),
-                    result.getInt("Count"),result.getString("NameTopic"));
+                    result.getInt("Count"),result.getString("NameTopic"),
+                    result.getString("FotoName"));
             VictorinLits.add(untipicalQueston);
         }
         Collections.shuffle(VictorinLits);

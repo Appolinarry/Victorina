@@ -6,7 +6,7 @@ public class TipicalQueston extends  Victorin{
 
     Random random = new Random();
     public TipicalQueston(int number,String queston, String answera,String answerb,String answerc, String rightanswer,
-                          int count, String nametopic) {
+                          int count, String nametopic, String fotoname) {
         this.Queston = queston;
         this.AnswerA = answera;
         this.AnswerB = answerb;
@@ -15,6 +15,7 @@ public class TipicalQueston extends  Victorin{
         this.NumberQueston = number;
         this.CountQueston = count;
         this.NameTopic = nametopic;
+        this.FotoName = fotoname;
     }
     @Override
     public String  toString(){
