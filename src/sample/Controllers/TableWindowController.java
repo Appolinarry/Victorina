@@ -12,9 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.Databases.BDPerson;
-import sample.Databases.Bridge;
-import sample.Databases.Person;
+import sample.Person.BDPerson;
+import sample.Person.Person;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -58,8 +57,8 @@ public class TableWindowController {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
-        BDPerson.readDB();
-        PersonData = Bridge.getPersonData();
+        //BDPerson.readDB();
+        PersonData = BDPerson.getPersonData();
         NumberPerson.setCellValueFactory(new PropertyValueFactory<Person,Integer>("NumberPerson"));
         Nicname.setCellValueFactory(new PropertyValueFactory<Person, String>("Nicname"));
         NameGame.setCellValueFactory(new PropertyValueFactory<Person, String>("NameGame"));

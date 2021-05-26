@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import sample.Databases.BDPerson;
+import sample.Person.BDPerson;
 
 import java.io.IOException;
 import java.sql.SQLException;
