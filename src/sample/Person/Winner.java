@@ -11,6 +11,11 @@ public class Winner extends Gamer{
         this.GameCount = totalCount;
         this.FactNumber = factNumber;
     }
+    @Override //перезапись метода toString для вывода в таблицу
+    public String  toString(){
+        return Integer.toString(Number)+" "+Nicname+" "+ Title+  " " +NameGame+" "+Integer.toString(GameCount)
+                +  " " + FactNumber;
+    }
 
     public int getNumber() {
         return Number;

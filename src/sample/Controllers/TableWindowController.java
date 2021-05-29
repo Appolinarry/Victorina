@@ -87,7 +87,7 @@ public class TableWindowController {
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/Windows/sample.fxml"));
+            loader.setLocation(getClass().getResource("/sample/Windows/ChoiseTopic.fxml"));
             try {
                 loader.load();
             } catch (IOException ex) {

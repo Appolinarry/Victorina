@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.Person.BDPerson;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -24,6 +23,7 @@ public class Controller {
         BDPerson.connectionBDPerson();//Подключаем БД Person
         BDPerson.newTablePerson();//создание таблички person
         BDPerson.newTableWinner();//создание таблички winner
+        BDPerson.newTableWinner1();//создание таблицы титулов
         ReversButton.setOnAction(e->{//закрытие формы м приложения
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();

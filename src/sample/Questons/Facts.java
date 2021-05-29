@@ -10,7 +10,10 @@ public class Facts {
         FactContent = factContent;
         FotoFact = fotoFact;
     }
-
+    @Override
+    public String  toString(){
+        return FactContent;
+    }
     public int getNumber() {
         return Number;
     }
