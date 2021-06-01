@@ -6,38 +6,103 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ChoiseTopicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ChoiseTopicController">
     <children>
-        <Label layoutX="389.0" layoutY="30.0" text="Выберете тему:" textFill="PURPLE">
+        <Label layoutX="155.0" layoutY="38.0" text="Выберете тему:" textFill="PURPLE">
             <font>
                 <Font name="Times New Roman" size="64.0" />
             </font>
         </Label>
-        <Button fx:id="RandomButton" layoutX="545.0" layoutY="672.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Кучамола" textFill="#fce4ff">
+        <Button fx:id="FishButton" layoutX="41.0" layoutY="151.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Рыбки" textFill="#fce4ff">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
         </Button>
-        <Button fx:id="ResultButton" layoutX="698.0" layoutY="733.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Посмотреть результаты" textFill="#fce4ff">
+        <Button fx:id="ResultButton" layoutX="828.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Посмотреть результаты" textFill="#fce4ff">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
         </Button>
-        <Button fx:id="ReversButton" layoutX="23.0" layoutY="733.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
+        <Button fx:id="ReversButton" layoutX="21.0" layoutY="531.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
         </Button>
-      <Button fx:id="WhereButton" layoutX="933.0" layoutY="156.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="А где это место?" textFill="#fce4ff">
-         <font>
-            <Font name="Times New Roman" size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="Unicbutton" layoutX="224.0" layoutY="733.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Индивидуальные результаты" textFill="#fce4ff">
+      <Button fx:id="Unicbutton" layoutX="800.0" layoutY="109.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Индивидуальные результаты" textFill="#fce4ff">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Button>
       <ImageView fx:id="Image1" fitHeight="150.0" fitWidth="200.0" layoutX="196.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="WormButton" layoutX="230.0" layoutY="151.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Червячки" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="TravelButton" layoutX="845.0" layoutY="408.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Географические открытия" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="SpiderButton" layoutX="368.0" layoutY="217.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Паучкообразные" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="TreeButton" layoutX="127.0" layoutY="230.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Деревья" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="BrdButton" layoutX="41.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Птички" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="DiviseButton" layoutX="678.0" layoutY="500.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Изобретения 20 века" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="WhereTownButton" layoutX="996.0" layoutY="500.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="А где город?" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="AstronomyButton" layoutX="246.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Звездочки" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="GalaksyButton" layoutX="127.0" layoutY="401.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Галактики" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="XlghtButton" layoutX="579.0" layoutY="408.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Излучение" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="AnothomyButton" layoutX="488.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Анотомия" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="ChemicalButton" layoutX="368.0" layoutY="408.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Химия" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="PeopleButton" layoutX="419.0" layoutY="500.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Обществознание" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="GeografyButton" layoutX="706.0" layoutY="328.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="География" textFill="#fce4ff">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

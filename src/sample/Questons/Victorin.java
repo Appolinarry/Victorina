@@ -1,7 +1,5 @@
 package sample.Questons;
 
-import java.util.Random;
-
 public class Victorin {
     private String Queston;//Вопрос
     private String AnswerA;//Вариант ответа №1
@@ -23,70 +21,72 @@ public class Victorin {
         this.CountQueston = count;
         this.NameTopic = nametopic;
     }
+    //перезапись toString
     @Override
     public String  toString(){//на основе случайного числа подбирает запись вопроса
         return Queston+"\n 1)" +AnswerA+"\n 2)"+ AnswerB+"\n 3)"+ AnswerC;
     }
+    //возвращает  значения  Queston
     public String getQueston() {
         return Queston;
     }
-
+    // устанавливает значение Queston
     public void setQueston(String queston) {
         Queston = queston;
     }
-
+    //возвращает  значения  AnswerA
     public String getAnswerA() {
         return AnswerA;
     }
-
+    // устанавливает значение AnswerA
     public void setAnswerA(String answerA) {
         AnswerA = answerA;
     }
-
+    //возвращает  значения  AnswerB
     public String getAnswerB() {
         return AnswerB;
     }
-
+    // устанавливает значение AnswerB
     public void setAnswerB(String answerB) {
         AnswerB = answerB;
     }
-
+    //возвращает  значения  AnswerC
     public String getAnswerC() {
         return AnswerC;
     }
-
+    // устанавливает значение AnswerC
     public void setAnswerC(String answerC) {
         AnswerC = answerC;
     }
-
+    //возвращает  значения  RightAnswer
     public int getRightAnswer() {
         return RightAnswer;
     }
-
+    // устанавливает значение RightAnswer
     public void setRightAnswer(int rightAnswer) {
         RightAnswer = rightAnswer;
     }
-
+    //возвращает  значения  NumberQueston
     public int getNumberQueston() {
         return NumberQueston;
     }
-
+    // устанавливает значение NumberQueston
     public void setNumberQueston(int numberQueston) {
         NumberQueston = numberQueston;
     }
-
+    //возвращает  значения  CountQueston
     public int getCountQueston() {
         return CountQueston;
     }
-
+    // устанавливает значение CountQueston
     public void setCountQueston(int countQueston) {
         CountQueston = countQueston;
     }
-
+    //возвращает  значения  NameTopic
     public String getNameTopic() {
         return NameTopic;
     }
-
+    // устанавливает значение NameTopic
     public void setNameTopic(String nameTopic) {
         NameTopic = nameTopic;
     }

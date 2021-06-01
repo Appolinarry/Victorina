@@ -23,65 +23,63 @@ public class Person extends Gamer{
         return Integer.toString(Number)+" "+Nicname+" "+ NameGame+" "+Integer.toString(GameCount)+" "+
                 Title+  " " + Integer.toString(LifeCount) + " " + Integer.toString(OurCount) +" "+ Comment;
     }
-    // гетеры и сетеры для полей класса
+
     public int getNumberPerson() {
         return Number;
     }
-
+    //устанавливает значение Number
     public void setNumberPerson(int numberPerson) {
         Number = numberPerson;
     }
-
+    //возвращает значение Number
     public String getNicname() {
         return Nicname;
     }
-
+    //устанавливает значение Nicname
     public void setNicname(String nicname) {
         Nicname = nicname;
     }
-
+    //возвращает значение Nicname
     public String getNameGame() {
         return NameGame;
     }
-
+    //устанавливает значение Number
     public void setNameGame(String nameGame) {
         NameGame = nameGame;
     }
-
+    //возвращает значение NameGame
     public int getGameCount() {
         return GameCount;
     }
-
+    //устанавливает значение NameGame
     public void setGameCount(int gameCount) {
         GameCount = gameCount;
     }
-
+    //возвращает значение Title
     public String getTitle() {
         return Title;
     }
-
+    //устанавливает значение Title
     public void setTitle(String title) {
         Title = title;
     }
-
+    //возвращает значение Comment
     public String getComment() { return Comment;  }
-
+    //устанавливает значение Comment
     public void setComment(String comment) {
         Comment = comment;
     }
-
+    //возвращает значение LifeCount
     public int getLifeCount() {
         return LifeCount;
     }
-
+    //устанавливает значение LifeCount
     public void setLifeCount(int lifeCount) {
         LifeCount = lifeCount;
     }
-
-    public int getOurCount() {
-        return OurCount;
-    }
-
+    //возвращает значение OurCount
+    public int getOurCount() {return OurCount;}
+    //устанавливает значение OurCount
     public void setOurCount(int ourCount) {
         OurCount = ourCount;
     }

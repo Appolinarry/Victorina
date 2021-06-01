@@ -23,7 +23,7 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </TextField>
-        <Label fx:id="Hellowlabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="121.0" prefHeight="40.0" prefWidth="934.0" text="Выбрите количесвто жизней" textFill="PURPLE">
+        <Label fx:id="Hellowlabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="121.0" prefHeight="40.0" prefWidth="934.0" text="Выберете количество жизней" textFill="PURPLE">
             <font>
                 <Font name="Times New Roman" size="36.0" />
             </font>

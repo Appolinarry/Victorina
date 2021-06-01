@@ -23,7 +23,7 @@ public class Controller {
         BDPerson.connectionBDPerson();//Подключаем БД Person
         BDPerson.newTablePerson();//создание таблички person
         BDPerson.newTableWinner();//создание таблички winner
-        BDPerson.newTableWinner1();//создание таблицы титулов
+        BDPerson.newTableTitle();//создание таблицы титулов
         ReversButton.setOnAction(e->{//закрытие формы м приложения
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();

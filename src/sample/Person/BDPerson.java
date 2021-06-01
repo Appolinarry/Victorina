@@ -36,7 +36,7 @@ public class BDPerson {
                 " 'Title' text, 'NameGame' text,'GameCount' int, 'FactNumber' int);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
     }
     //Создание таблицы титулов
-    public static void newTableWinner1() throws ClassNotFoundException, SQLException{
+    public static void newTableTitle() throws ClassNotFoundException, SQLException{
         stab = person.createStatement();//создание экземпляра класса Statement
         stab.execute("CREATE TABLE if not exists 'title' ('NumberTitle' INTEGER PRIMARY KEY AUTOINCREMENT, 'NameGame' text," +
                 " 'Title' text, 'WinOrNot' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
@@ -51,33 +51,113 @@ public class BDPerson {
         stab.execute("INSERT INTO 'winner' ('Nicname','Title','NameGame','GameCount','FactNumber') " +
                 "VALUES ('" + nic + "', '" + title + "', '" + game + "', "+ count + ", " + fact + " ); ");
     }
-    // заполнение таблицы БД winner
-    public static void writeDB4() throws SQLException{
-        stab.execute("INSERT INTO 'winner' ('Nicname','Title','NameGame','GameCount','FactNumber') " +
-                "VALUES ('lolo', 'Молодец', 'Whereistit', 30, 5 ); ");
-        stab.execute("INSERT INTO 'winner' ('Nicname','Title','NameGame','GameCount','FactNumber') " +
-                "VALUES ('lololo', 'Молодец', 'Whereistit', 32, 4 ); ");
-        stab.execute("INSERT INTO 'winner' ('Nicname','Title','NameGame','GameCount','FactNumber') " +
-                "VALUES ('lololo', 'Молодец', 'Whereistit', 32, 5 ); ");
-    }
-    // заполнение таблицы БД winner
-    public static void writeDB3() throws SQLException{
-        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Whereisit', 'Молодец', 'Yes'); ");
-        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Whereisit', 'Красивчик', 'Yes'); ");
-        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Whereisit', 'Умница', 'Yes'); ");
-        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Whereisit', 'Молодец', 'No'); ");
+    // заполнение таблицы БД title
+    public static void writeDB3() throws SQLException{//заполнение таблицы титулов
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Знаток рыбок', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Рыбный умник', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Юный ихтиолог', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Друг рыбок', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Пробирающийся к рыбкам', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Рыбки', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Червячки', 'Друг червей', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Червячки', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Червячки', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Червячки', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Червячки', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Паучкообразные', 'Друг паучков', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Паучкообразные', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Паучкообразные', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Паучкообразные', 'Юный арахнолог', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Паучкообразные', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Паучкообразные', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Деревья', 'Друг деревьев', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Деревья', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Деревья', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Деревья', 'Юный биолог', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Деревья', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Деревья', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Птички', 'Друг птичек', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Птички', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Птички', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Птички', 'Юный орнитолог', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Птички', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Птички', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Знаток истории', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Друг Магеллана', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Географические открытия', 'Попавший в бурю', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Знаток истории', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Друг Самоделкина', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Изобретения 20 века', 'Запутавшийся в фактах', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Бывалый путешественник', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Проложивший свой маршрут', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Заплутавший в пути', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('А где город?', 'Бывалый путешественник', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Звездочки', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Звездочки', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Звездочки', 'Юный асторонм', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Звездочки', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Звездочки', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Звездочки', 'Заплутавший в звездах', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Излучение', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Излучение', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Излучение', 'Юный физик', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Излучение', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Излучение', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Излучение', 'Заплутавший волнах', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Галактики', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Галактики', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Галактики', 'Юный асторонм', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Галактики', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Галактики', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Галактики', 'Заплутавший в черную дыру', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Анотомия', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Анотомия', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Анотомия', 'Юный анатом', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Анотомия', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Анотомия', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Химия', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Химия', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Химия', 'Юный химимк', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Химия', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Химия', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('География', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('География', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('География', 'Юный географ', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('География', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('География', 'Потытка не пытка', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('География', 'Товарищ Жака Паганеля', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Обществознание', 'Молодчинка', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Обществознание', 'Умница', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Обществознание', 'Юный обществовед', 'Yes'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Обществознание', 'Начинающий знаток', 'No'); ");
+        stab.execute("INSERT INTO 'title' ('NameGame','Title','WinOrNot') VALUES ('Обществознание', 'Потытка не пытка', 'No'); ");
     }
     // вывод данных из таблицы person
     public static void readDB() throws ClassNotFoundException, SQLException {
         PersonData.clear();// Очистка списка
         result = stab.executeQuery("SELECT * FROM person"); //выборки данных с помощью команды SELECT
         while(result.next())//Запись данных из БД в List для таблицы
-        {
+        {//выборки данных с помощью команды SELECT
             Person person1 = new Person(result.getInt("NumberPerson"),result.getString("Nicname"),
                     result.getString("NameGame"),result.getInt("GameCount"),
                     result.getString("Title"),result.getInt("LifeCount"),
                     result.getInt("OurCount"),result.getString("Comment"));
-            PersonData.add(person1);
+            PersonData.add(person1);//заполнение списка
         }
     }
     //Вывод данных из таблицы winner
@@ -85,44 +165,35 @@ public class BDPerson {
         PersonData.clear();// Очистка списка
         result = stab.executeQuery("SELECT * FROM winner"); //выборки данных с помощью команды SELECT
         while(result.next())//Запись данных из БД в List для таблицы
-        {
+        {//выборки данных с помощью команды SELECT
             Winner winner = new Winner(result.getInt("Number"),result.getString("Nicname"),
                     result.getString("Title"),result.getString("NameGame"),
                     result.getInt("GameCount"),result.getInt("FactNumber"));
-            PersonData.add(winner);
+            PersonData.add(winner);//заполнение списка
         }
     }
+    //чтение титула из таблицы по заданным входящим параметрам
     public static void readDBTitle(String topic, String YesOrNot) throws ClassNotFoundException, SQLException {
-        TitleCreator.clear();
-        result = stab.executeQuery("SELECT * FROM title Where NameGame = '"+ topic + "' and WinOrNot = '"+YesOrNot+"'"); //выборки данных с помощью команды SELECT
+        TitleCreator.clear();//очищение списка титулов
+        result = stab.executeQuery("SELECT * FROM title Where NameGame = '"+ topic + "' and WinOrNot = '"+YesOrNot+"'");//выборки данных с помощью команды SELECT
         while(result.next())//Запись данных из БД в List для таблицы
-        {
+        {//создание экемпляра с заданным из таблицы параметрам
             TitleCreator titleCreator = new TitleCreator(result.getInt("NumberTitle"),
                     result.getString("NameGame"),
                     result.getString("Title"),result.getString("WinOrNot"));
-            TitleCreator.add(titleCreator);
+            TitleCreator.add(titleCreator);//заполнение списка
         }
-        Collections.shuffle(TitleCreator);
+        Collections.shuffle(TitleCreator);//перемешивание списка
     }
     //Фильтрция из БД
     public  static void SelecName(String Whatisit) throws SQLException {
         PersonData.clear();// Очистка списка
-        result = stab.executeQuery("SELECT * FROM 'winner' WHERE Nicname = '"+Whatisit+"'");
-        while(result.next()) {
-            Winner winner = new Winner(result.getInt("Number"),result.getString("Nicname"),
+        result = stab.executeQuery("SELECT * FROM 'winner' WHERE Nicname = '"+Whatisit+"'");//выборки данных с помощью команды SELECT
+        while(result.next()) {//Запись данных из БД в List для таблицы
+            Winner winner = new Winner(result.getInt("Number"),result.getString("Nicname"),//создание экемпляра с заданным из таблицы параметрам
                     result.getString("Title"),result.getString("NameGame"),
                     result.getInt("GameCount"),result.getInt("FactNumber"));
-            PersonData.add(winner);
-        }
-    }
-    //Фильтрция из БД
-    public  static void SelecTitle(String Whatisit) throws SQLException {
-        TitleCreator.clear();// Очистка списка
-        result = stab.executeQuery("select * from title where 'NameGame'="+Whatisit);
-        while(result.next()) {
-            TitleCreator winner = new TitleCreator(result.getInt("NumberTitle"),result.getString("NameGame"),
-                    result.getString("Title"),result.getString("WinOrNot"));
-            TitleCreator.add(winner);
+            PersonData.add(winner);//заполнение списка
         }
     }
     //закрытие БД

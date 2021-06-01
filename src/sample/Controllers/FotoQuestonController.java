@@ -103,7 +103,7 @@ public class FotoQuestonController {
             if ((convert(Text.getText()) == 3)||(convert(Text.getText()) == 2)||(convert(Text.getText()) == 1)){
                 if (convert(Text.getText())==VictorinLits.get(i).getRightAnswer()) {
                     count+= VictorinLits.get(i).getCountQueston();
-                    if (i < VictorinLits.size()-1){
+                    if (i < 10){
                         i++;}else {
                         try {
                             BDPerson.readDBTitle(VictorinLits.get(0).getNameTopic(), "Yes");

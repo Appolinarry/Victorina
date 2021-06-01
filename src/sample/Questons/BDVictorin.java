@@ -5,100 +5,396 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BDVictorin {
-    public static ArrayList<Victorin> getVictorinLits() { return VictorinLits; }// возвращает значение ArrayList
-    public static void setVictorinLits (Victorin victorin){VictorinLits.add(victorin);}// устанавливает ArrayList
-    private  static ArrayList<Victorin> VictorinLits = new ArrayList<>();//List для считывания вопросов
-    public static ArrayList<Facts> getFactsLits() { return FactsLits; }// возвращает значение ArrayList
-    public static void setFactsLits (Facts facts){FactsLits.add(facts);}// устанавливает ArrayList
-    private  static ArrayList<Facts> FactsLits = new ArrayList<>();//List для считывания фактов
+    public static ArrayList<Victorin> getVictorinLits() {
+        return VictorinLits;
+    }// возвращает значение ArrayList
+
+    public static void setVictorinLits(Victorin victorin) {
+        VictorinLits.add(victorin);
+    }// устанавливает ArrayList
+
+    private static ArrayList<Victorin> VictorinLits = new ArrayList<>();//List для считывания вопросов
+
+    public static ArrayList<Facts> getFactsLits() {
+        return FactsLits;
+    }// возвращает значение ArrayList
+
+    public static void setFactsLits(Facts facts) {
+        FactsLits.add(facts);
+    }// устанавливает ArrayList
+
+    private static ArrayList<Facts> FactsLits = new ArrayList<>();//List для считывания фактов
     public static Connection victorin; //Для соединения с БД необходимо использовать класс Connection пакета java.sql.
     public static Statement stab; //используется для выполнения SQL-запросов
     public static ResultSet result;//представляет результирующий набор данных и обеспечивает приложению построчный доступ к результатам запросов
+
     //подключение к BDVictorin
     public static void connectionBDVictorin() throws ClassNotFoundException, SQLException {
         victorin = null;
         Class.forName("org.sqlite.JDBC");  //("имя движка") вызывает динамическую загрузку класса, org.sqlite.JDBC принадлежит к jar sqlite-jdbc
         victorin = DriverManager.getConnection("jdbc:sqlite:dataVictorin.s3db"); //("протокол:движок:имя_файла_БД")находит java.sql.Driver соответствующей базы данных и вызывает у него метод connect (метод connect всегда создает базу данных заранее)
     }
+
     // cоздание таблицы БД с 3 ответами
-    public static void newTable1() throws ClassNotFoundException, SQLException{
+    public static void newTableVictorin() throws ClassNotFoundException, SQLException {
         stab = victorin.createStatement();//создание экземпляра класса Statement
         stab.execute("CREATE TABLE if not exists 'Victirin' ('NumberQueston' INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " 'Queston' text, 'AnswerA' text,'AnswerB' text,'AnswerC' text,'RightAnswer' int,'Count'int," +
                 "'NameTopic' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
     }
+
     // cоздание таблицы БД с интересными фактами
-    public static void newTable3() throws ClassNotFoundException, SQLException{
+    public static void newTableFact() throws ClassNotFoundException, SQLException {
         stab = victorin.createStatement();//создание экземпляра класса Statement
         stab.execute("CREATE TABLE if not exists 'Fact' ('Number' INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " 'FactContent' text, 'FotoFact' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
     }
     // заполнение таблицы БД с 3 вариантами ответов
-    public static void writeDB1() throws SQLException{
-        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer'" +
-                " ,'Count','NameTopic') VALUES ('Вопрос1', 'а1','а2', 'а3',1,10,'Whereisit'); ");
-        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer'" +
-                " ,'Count','NameTopic') VALUES ('Вопрос2', 'а1','а2', 'а3',2,10,'Whereisit'); ");
-        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer'" +
-                " ,'Count','NameTopic') VALUES ('Вопрос3', 'а1','а2', 'а3',3,10,'Whereisit'); ");
-        System.out.println("Таблица заполнена");
+    public static void writeQueston() throws SQLException {
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Оригинальность этой рыбы заключается в том, что она,\n защищаясь от хищников, превращается в подобие футбольного\n мяча с шипами', 'рыба-хамелеон','рыба-дикобраз', 'рыба-меч',2,10,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Электрическая рыба, смертельно опасная для находящегося рядом\n с ней в воде человека:', 'скат','белая акула', 'спрут',1 ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Рыба, героиня известной басни И. А. Крылова, пытавшаяся помочь\n сдвинуть воз с поклажей', 'рак','скат', 'щука',3 ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Памятник, какой рыбе установлен в городе Бердянске?', 'Белуге','Камбале', 'Бычку',3 ,30 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое художественное произведение, повествующееn\nо драматических перипетиях рыбной ловли,\nбыло удостоено Нобелевской премии?', 'Моби Дик','Тихий Дон', 'Старик и море',3,20 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется суп, приготовленный на рыбном бульоне?', 'Харчо','Уха', 'Солянка',2,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('О какой премудрой рыбке рассказывается в известной сказке\n М. Салтыкова-Щедрина?', 'О карасе','Об окуне', 'О пескаре',3,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как образно именуют скатов-манта?', 'Морской ангел','Морской черт', 'Морской дьявол',3 ,15 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называются рыбы, умеющие выпрыгивать из воды,\n и осуществлять непродолжительный, летящий полёт?', 'Прыгуны','Парящие', 'Летучие',3 ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Почему рыбы кашляют?', 'Рыбы так прочищают жабры','У рыб так протекает болезнь', 'Рыбы не умеют кашлять',1,20 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие рыбы плавают головой вверх?', 'Пецилобрикон','Нанностомус', 'Черный телескоп',1,30 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Эта рыба может безопасно плавать среди ядовитых щупалец\nморских анемонов, покрыв себя слизью.', 'Рыба – меч','Рыба – клоун', 'Рыба – коралл', 2,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой раздел зоологии посвящён изучению рыб?', 'Ихтиология','Энтомология', 'Батрахология',1 ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое из этих животных не рыба?', 'Акула','Дельфин', 'Скат',2 ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая рыба умеет летать?', 'Рыба - попугай','Рыба - стрела', 'Двукрылая рыба',3 ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая рыба способна менять свой цвет как хамелион?', 'Камбала','Налим', 'Осетр',1,20 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая рыба способна лечить кожу человека от псориатических бляшек?', 'Гара Руфа','Рыба- прилипала', 'Сомик анциструс',1,30 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Рыбы какого семейства не бывают красными?', 'Лососевые','Тресковые', 'Осетровые',2,20 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая рыба в основном передвигается за счет других?', 'Прилепала','Минога', 'Рыба-присоска', ,10 ,'Рыбки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Рыбы какого семейства дают черную икру?', 'Осетровые','Спаровые', 'Сомовые',1,10 ,'Рыбки'); ");
+        //Рыбки
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое животное является промежуточным хозяином бычьего\n цепня?', 'Корова','Лошадь', 'Овца',1 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Аскариды не перевариваются в кишечнике человека, так как', 'они быстро передвигаются','у них есть особые покровы тела', 'питаются полупереваренной пищей',2,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Щетинки дождевого червя', 'воспринимают раздражения из окружающей среды','создают опору при движении', 'являются наружным скелетом',2,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В организме промежуточных хозяев у червей-паразитов', 'живут взрослые особи','идёт размножение взрослых особей', 'развиваются личинки',3 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Черви-паразиты откладывают яиц:', 'столько же, сколько свободноживущие','немного больше, чем свободноживущие', 'намного больше, чем свободноживущие',3 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Отношения паразита и хозяина', 'взаимовыгодны','выгодны только паразиту', 'выгодны только хозяину', 2,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Животные, тело которых состоит из большого числа сходных\n члеников, относят к типу:', 'круглые черви','кольчатые черви', 'кишечнополостные',2 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Дождевой червь питается', 'опавшими листьями, перегнившими растительными остатками','корнями растений', 'почвенными насекомыми',1 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Бесполостные двустороннесимметричные животные с вытянутым,\nсплющенным сверх вниз телом относятся к типу', 'круглые черви','кольчатые черви', 'плоские черви',3 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Нельзя пить сырую воду из водоема, так как можно заразиться', 'чесоткой','финнами бычьего цепня', 'печеночным сосальщиком',3 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кожно-мускульный мешок у дождевого червя образован', 'плотно сросшимися кожным покровом и мышцами','мышцами', 'кожным покровом',1,20 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Почему опасно употреблять в пищу плохо вымытые овощи?', 'можно заразиться аскаридами','можно заразиться финнами бычьего цепня', 'там могут быть личинки печеночного сосальщика',1 ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие особенности питания дождевых червей способствуют\nпроникновению в почву воды и воздуха?', 'затаскивание в норы листьев и других частей растений','выбрасывание земли на поверхность', 'перемешивание почвы',1,20 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Животных с вытянутым цилиндрическим заостренным с обоих концов телом, не разделенным на членики, относят к типу', 'круглых червей','кольчатых червей', 'кишечнополостных', ,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Почему нельзя брать в рот травинки с сырых лугов?', 'на них могут быть возбудители малярии','на них могут быть личинки печеночного сосальщика', 'на них могут быть яйца остриц',2,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Белые планарии живут', 'в пресных водоемах, под корягами, корнями, листьями','в кишечнике человека', 'везде',1,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('По характеру питания дождевой червь', 'производитель органических веществ','хищник', 'потребитель разлагающихся растительных остатков',3,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Половое размножение у червей-паразитов\n со сменой хозяев происходит:', ' в организме основного хозяина','в организме промежуточного хозяина', 'почве и водной среде',1,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Лучевую симметрию тела не имеет:', 'медуза – корнерот','белая планария', 'пресноводная гидра',2,10 ,'Червячки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Свободноживущим видом является', 'планария','эхинококк', 'кошачья двуустка',1,30 ,'Червячки'); ");
+        //Червячки
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Для кого из паукообразных характерно метаморфозное\nразвитие?', 'Пауков','Скорпионов', 'Клещей',3,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой паук живет в домике под водой?', 'Тарантул','Серебрянка', 'Каракурт',2,20 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Имя, какого великана носит самый крупный\n паук в мире?', 'Геркулеса','Гулливера', 'Голиафа',3,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой части тела нет у скорпионов?', 'Переднебрюшье','Среднебрюшье', 'Заднебрюшье',2,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Сколько конечностей у паукообразных?', 'Шесть','Восемь', 'Десять',2 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Переносчиком, какого опасного заболевания\nявляются некоторые виды клещей?', 'Коклюша','Гриппа', 'Энцефалита',3,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Где нельзя встретить паукообразных?', 'В Австралии','В Азии', 'В Антарктиде',3 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая стадия в цикле развития отсутствует\n у клещей?', 'Личинка','Куколка', 'Яйцо',2 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Когда на Земле появились паукообразные?', 'В каменноугольный период','В меловой период', 'В юрский период',1 ,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой из органов у скорпиона имеет форму клешней?', 'Хелицеры','Ходильные ноги', 'Ногощупальца',3 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Пауки — это хищники у которых процесс\nпищеварения осуществляется...', 'в ротовой полости','в пищеводе', 'нет правильного ответа',3 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Ловчую сеть не плетет паук...', 'крестовик','серебрянка', 'сенокосец',3 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Таежные клещи по характеру питания являются...', 'хищниками','паразитами', 'сапрофитами',2 ,10 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Клещей можно отличить от пауков по следующим признакам:', 'отсутствуют усики','имеют восемь ног', 'все членики тела срастаются между собой',3 ,20 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Хелицеры паукообразных — это...', 'ходильные ноги','органы дыхания', 'первая пара конечностей',3 ,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Для пауков характерно:', 'трахейно-легочное дыхание','только трахейное дыхание', 'только легочное дыхание',1 ,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кровь поступает в сердце паукообразных...', 'через приносящие сосуды','через отверстия с клапанами', 'диффузно из окружающих тканей',2 ,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Всасывающая поверхность кишечника паукообразных\nувеличена за счёт...', 'выростов средней кишки','выростов передней кишки', 'выростов задней кишки',1 ,30 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Распространение паукообразных в засушливых районах\nЗемли связано:', 'с их подвижностью','со строением покровов', 'с легочным дыханием',2 ,20 ,'Паучкообразные'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто из паукообразных встречается преимущественно\nв Средней Азии?', 'тарантул','таёжный клещ', 'зудень',1 ,10 ,'Паучкообразные'); ");
+        //Паучки
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У какого дерева листья похожи на ладошки?', 'Дуб','Клен', 'Береза',2 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('На каких деревьях растут жёлуди?', 'Дуб','Береза', 'Ясень',1 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У какого дерева вместо листьев растут иголки?', 'Клен','Каштан', 'Сосна',3 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('С какого дерева летом летит пух похожий на снег?', 'Клен','Тополь', 'Липа',2 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('На каком дереве растут гроздья ярких красных ягод?', 'Каштан','Тополь', 'Рябина',3 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У какого дерева самая прочная древесина', 'дуб','лиственница', 'пихта',1 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Ядовитое растение:', 'тис','липа', 'ольха',1 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У каких деревьев весной берут сладкий сок?', 'Берёза','Тополь', 'Рябина',1 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Выбери из растений хвойный кустарник', 'лиственница','можжевельник', 'орешник',2 ,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Из древесины какого дерева изготавливают музыкальные\nинструменты?', 'Клён','Ива', 'Пихта',1,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Самые лучшие бочки для хранения продуктов:', 'Ива','Дуб', 'Клен',2,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У какого дерева весной вырастают длинные серёжки?', ' Тополь','Ольха', 'Берёза',3,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('На каком дереве листья осенью не только желтеют,\nно и краснеют?', 'Берёза','Ольха', 'Рябина',3,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие деревья называются хвойными?', 'Дуб, берёза, клён','Ель, пихта, сосна', 'Ясень, ива, тополь',2,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К какому семейству принадлежит ясень?', 'Вербеновые','Маслиновые', 'Ивовые',2,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Сорт какого дерева называется бергамот осенний?', 'Груша','Персик', ' Яблоня',1,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое произведение есть у Агаты Кристи?', 'Печальный тополь','Печальный дуб', Печальный кипарис',3,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое дерево относится к красным породам?', 'Вишня',' Ягодный тис', 'Клен',2,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('На щепках и опилках какого дерева рыбу\nобычно НЕ коптят?', 'Яблоня','Ольха', 'Сосна',3,10 ,'Деревья'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое второе название имеет каучуковое дерево?', ' Виниловое дерево',' Нейлоновое дерево', ' Резиновое дерево',3,10 ,'Деревья'); ");
+        //Деревья
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Один из признаков усложнения птиц, по сравнению\nс пресмыкающимися, – это...', 'постоянная температура тела','деление тела на отделы', 'внутренний скелет',1,20 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К доказательствам родства археоптерикса и\nпресмыкающихся относится:', 'передние конечности – крылья','расположение пальцев на задних конечностях', 'длинный хвостовой отдел позвоночника',3,20 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К какой системе органов относится печень у птиц?', 'Нервной','Пищеварительной', 'Кровеносной',2,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Цевка у птиц – это часть:', 'кисти','голени', 'стопы',3,30 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У птиц к легким от сердца кровь течет', 'по артериям большого круга кровообращения','по артериям малого круга кровообращения', 'по венам малого круга кровообращения',2,30 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У птиц хорошо развиты органы чувств:', 'обоняние','осязание', 'слух и зрение',3,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Все действия птиц связанные с постройкой\nгнезд представляют собой...', 'условный рефлекс','инстинкт и проявление заботы о потомстве', 'комплекс условных и безусловных рефлексов',2,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Зимой птицам страшен голод, а не холод, так как они...', 'теплокровны и пища является для них источником энергии','способны к полету', 'имеют сухую кожу',3,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Доказательством родства птиц с пресмыкающимися служит...', 'постоянная температура тела','отделение артериальной крови от венозной', 'строение яиц и наличие на коже роговых чешуек',3,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К экологическим группам птиц по месту обитания относят...', 'насекомоядных','лесных и водоплавающих', 'хищных',2 ,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Представителями отряда воробьинообразных являются...', 'городская ласточка, певчий дрозд','черный стриж и серая ворона', 'красавка и эму',1 ,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У какой птицы максимально развит мускульный желудок:', 'у тетерева','у орла', 'у дятла',1 ,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Зоб — это...', 'орган хранения и частичного переваривания пищи','орган хранения и полного переваривания пищи', 'орган только хранения пищи',1 ,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Воздушные мешки птиц — это...', 'расширения лёгких','расширения трахеи', 'расширения бронхов',3,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У летающих птиц развивается высокий киль на грудине,\nпотому что:', 'он защищает органы грудной клетки','обеспечивает обтекаемую форму тела', 'к нему прикрепляются сильные грудные мышцы',3,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('У быстро бегающих птиц по сравнению с летающими число\nпальцев на ногах:', 'увеличено','уменьшено', 'не отличается',2,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Отсутствие зубов у птиц:', 'облегчает массу головы птицы','ослабляет защиту птицы', 'улучшает удержание добычи',1,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К насекомоядным птицам относится:', 'зимородок','свиристель', 'козодой',3,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая птица относится к отряду Голубеобразные', 'чибис','озёрная чайка', 'вяхирь',3 ,10 ,'Птички'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К выводковым птицам относится', 'серый журавль',' домовый воробей','чёрный стриж',1,10 ,'Птички'); ");
+        //Птички
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Мореплаватели какой европейской державы стали первыми\nсовершать географические открытия?', 'Португалия','Англия', 'Испания',1,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В каком веке были сделаны первые Великие открытия?', 'XIV в.','XV в.', 'XVI в.',2,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В каком металле более всего нуждались европейские\nдержавы в средневековье?', 'Железо','Медь', 'Золото',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой португальский мореплаватель первым открыл\nморской маршрут в Индию?', 'Бартоломеу Диаш','Васко да Гама', 'Педро де Кирос',2,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто открыл Америку?', 'Америго Веспуччи','Васко да Гама', 'Христофор Колумб',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто открыл Новую Зеландию и Австралию?', 'Васка Нуньенс Бальбоа','Бартоломеу Диаш', 'Абель Тасман',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Чем знаменит Фернан Магеллан?', 'Кругосветное путешествие','Открыл Тихий океан', 'Открыл Америку',1 ,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой русский путешественник отыскал пролив, соединяющий\nАзию с Северной Америкой?', 'Дежнев','Хабаров', 'Крузенштерн',1 ,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что открыл Фернан Магеллан в ходе своего\nкругосветного путешествия?', 'Пролив между Азией и Северной Америкой','Тихий океан', 'Земля имеет форму шара',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что изменилось в результате Великих географических\nоткрытий?', 'Развитие естественных наук','Формирование колониальных империй', 'Все ответы верны',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой ученый античного мира первым пришел к выводу\nо шарообразности Земли?', 'Платон','Аристотель', 'Сократ',2,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Впервые доплыл до Мыса Доброй Надежды', 'Ф.Дрейк','Франциско Писарро', 'Бартоломеу Диаш',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Первым обогнул южную оконечность Африки и вышел\nв Индийский океан в 1498 г. португалец', ' Х.Колумб','Васко да Гама', 'Ф.Магеллан',2,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Каким странам принадлежало первенство в географических\nоткрытиях конца XV — начала XVI в.?', 'Голландии и Испании','Англии и Франции', 'Испании и Португалии',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Понятие Новый Свет включает в себя', 'Северную и Южную Америку','Африку и Азию', 'Африку и Австралию',1 ,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Экспедиция Васко да Гамы', 'совершила кругосветное плавание','открыла острова Огненная Земля', 'достигла берегов Индии морским путем',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Именем Фернана Магеллана назван', 'пролив','полуостров', 'залив',1 ,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Васко да Гама нанес на карту очертание', 'острова Мадагаскар','острова Гренландия', 'острова Калимантан',1,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие океаны соединяет самый широкий в мире пролив Дрейка?', 'Индийский и Тихий','Индийский и Атлантический', 'Атлантический и Тихий',3,10 ,'Географические открытия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Первыми европейцам, совершившими путешествие в Китай были', 'купци Поло','рыцари Круглого стола', 'крестоносцы',1,10 ,'Географические открытия'); ");
+        //Географические открытия
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто изобрел первый практически применявшийся пароход?', 'Джон Стивенс','Алессандро Вольта','Роберт Фултон',3,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что изобрел российских физик Василий Петров в 1803 году?', 'Электрическую дуговую сварку','Оптический телеграф','Метроном',1 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто изобрел железнодорожную колею в 1435 мм?', 'Джеймс Несмит','Джордж Стефенсон','Роберт Томсон',2,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В каком году открылась первая в мире железнодорожная\n линия общественного пользования?', '1815','1820','1825',3,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что из перечисленного не относится к изобретениям\n 1838–1839 годов?', 'Суперфосфат','Азбука Морзе','Фотография',1 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что из перечисленного не относится к изобретениям 1860-х?', 'Дизельный двигатель','Магазинная винтовка','Броненосец',1,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Изобретателем чего в середине XIX века стал Элиша Отис?', 'Печатная машинка','Броненосец','Лифт',3 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто изобрел в 1860-е годы гектограф?', 'Михаил Родионов','Михаил Алисов','Михаил Попов',2,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто изобрел в 1888 году гусеничный трактор?', 'Дмитрий Менделеев','Николай Славянов','Федор Блинов',3 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто изобрел трамвай и троллейбус в 1880-е?', 'Вернер фон Сименс','Готтлиб Даймлер','Рудольф Дизель',1 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В каком году был создан пистолет-пулемет Шпагина?', '1938','1940','1942',2,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется самый известный истребитель нацисткой Германии?', 'Мессершмитт','Глостер','Мессершмитт',3,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Новыми источниками энергии в XIX веке стали:', 'нефть и электричество','нефть и древесный уголь','солнечная энергия и горючий сланец',1,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране впервые поднялся в воздух дирижабль?', 'Франция','Англия','Германия',1 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране был спущен на воду первый пароход?', 'Германия','Франция','Англия',2,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Электромеханический телеграф был изобретен американским\n профессиональным художником:', 'Александр Флеминг','Томасом Телфордом','Сэмюэлем Морзе',3 ,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кому принадлежит изобретение телефонного аппарата?', 'А. Белл','Н. Тесла','С. Кольт',1,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В каком году было изобретено радио?', '1895 г.','1900 г.','1911 г.',1,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто создал первый бензиновый автомобиль?', 'Генри Форд','Карл Бенц','Фердинанд Порше',2,10 ,'Изобретения 20 века'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Первую пассажирскую железную дорогу с паровой тягой построили в:', '1825 г.','1785 г.','1799 г.',1,10 ,'Изобретения 20 века'); ");
+        //Изобретения 20 века
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Парамарибо?', 'Уругвай','Суринам','Панама',2,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Тегусигальпа?', 'Гондурас','Гренада','Гаити',1,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Канкун?', 'Эквадор','Мексика','Никарагуа',2 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Гитега?', 'Бурунди','Египет','Танзания',1,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Боржоми?', 'Киргизия','Грузия','Израиль',2 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Армавир?', 'Пакистан','Израиль','Армения',3,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Каракол?', 'Бангладеш','Сирия','Киргизия',3 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Гродно?', 'Белоруссия','Латвия','Болгария',1 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Подгорица?', 'Черногория','Сербия','Украина',1 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Тракай?', 'Литва','Ирландия','Чехия',1 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Севилья?', 'Италия','Греция', 'Испания',3 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Лхаса?', 'Китай','Непал', 'Пакистан',1,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Марракеш?', 'Италия','Алжир', 'Марокко',3,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Петра?', 'Иордания','Болгария', 'Пакистан',1 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Варанаси?', 'Замбезия','Индия', 'Япония',2,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Гранада?', 'Испания','Италия', 'Греция',1,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Баган?', 'Мьянма','Бельгия', 'Индонезия',1,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Катманду?', 'Колумбия','Непал', 'Индия',2 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Лиссабон?', 'Бельгия','Болгария', 'Португалия',3 ,10 ,'А где город?'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В какой стране находится город Хойан?', 'Непал','Китай', 'Вьетнам',3,10 ,'А где город?'); ");
+        //А где город
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Самая яркая звезда:', 'Сириус','Мимоза','Полярная',1,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Небесную сферу условно разделили на…', '100 созвездий;','88 созвездий;','50 созвездий',2 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой из типов звезд не является завершающей стадией эволюции?', 'Белый карлик','Красный гигант','Нейтронная звезда',2 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой цвет у звезды спектрального класса К?', 'белый','оранжевый','жёлтый',2,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Когда основной этап эволюции звезды будет наиболее долгим?', 'Если звезда образовалась совсем недавно','Если масса звезды очень велика','Если масса звезды очень мала',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Основной этап эволюции звезды называется:', 'звездой главной последовательности','крастный гигант','нейтронная звезда',1 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Стадия звезды, при которой ядро все более сжимается,\n а внешние оболочки все более расширяются, называется:', 'протозвездой','красным гигантом','белым карликом',2 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Протозвезда — это:', 'последняя стадия звездной эволюции','область повышенной гравитации в звезде','область повышенной плотности в газовом облаке',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Главными факторами звездной эволюции являются:', 'гравитация и энергия термоядерного синтеза','температура межзвездной среды','реликтовое излучение',1 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Звезды никак не изменяются, потому что:', 'они вечны','они далеки друг от друга','это не так, звезды эволюционируют',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое астеризм?', 'группа звёзд, имеющая название ',' название галактики','учение об астероидах',1 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое созвездие названо в честь охотника \nиз древнегреческой мифологии', 'Октант','Киль','Орион',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется звезда, прошедшая стадию красного гиганта?', 'Коричневый карлик','Сверхновая звезда','Белый карлик',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется система из двух звёзд, гравитационно\n связанных между собой?', 'двузвездие','двойственная звезда','двойная звёзда',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое Цефеида:', 'система из нескольких звёзд',' звезда с переменной светимостью','название самой яркой звезды',2 ,20 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В честь кого названо созвездие Кассиопея?', 'в честь древней царицы','в честь женщины – астронома','в честь героини древнегреческих мифов',3 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Полная энергия, которую излучает звезда в единицу времени', 'яркость','светимость','свет',2 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называются самые плотные объекты во вселенной?', 'Нейтронные звезды','Карликовые звезды','Переменные звезды',1 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Самые тусклые звёзды (по Гиппарху) имеют…', '6 звёздную величину','5 звёздную величину','1 звёздную величину',1 ,10 ,'Звездочки'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Стадия конвективной звезды — это стадия, в которой:', 'все процессы в звезде прекращаются','в звезде есть неоднородность температуры, приводящая к конвекции','звезда быстро расширяется',2 ,10 ,'Звездочки'); ");
+        //Звездочки
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Коротковолновое электромагнитное излучение катодной \n трубки открыл:', 'П. Кюри','В. Рентген','Э. Резерфорд',2 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Почему катодные трубки излучают электромагнитное излучение?', 'В катодной трубке происходит термоядерный синтез.','В катодной трубке происходит радиоактивный распад.','Электроны излучают при резком торможении в веществе.',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое свойство рентгеновского излучения используется\nв рентгеноструктурном анализе вещества?', 'Возможность дифракции на атомах вещества','Ослабление излучения пропорционально плотности тканей','Их прямолинейное распространение',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое свойство рентгеновских лучей позволяет\n использовать их в медицине?', 'Их ионизирующая способность','Ослабление излучения пропорционально плотности тканей','Простота их получения',2 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто открыл сложный состав радиоактивного излучения?', 'Э. Резерфорд','П. Кюри','А. Эйнштейн',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие частицы называются альфа-частицами?', 'Ядра дейтерия','Ядра гелия','Электроны',2 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой знак имеет заряд бета-частиц?', 'Положительный или отрицательный в зависимости от энергии','Отрицательный','Положительный',2 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое свойство радиоволн частот до 30 МГц обеспечило\n применение их в дальней радиосвязи?', 'Способность отражаться от верхних слоев атмосферы','Способность рассеиваться в пространстве','Способность огибать препятствия',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Наибольшей ионизирующей способностью обладает:', 'бета-излучение','гамма-излучение','альфа-излучение',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Наибольшей проникающей способностью обладает:', 'альфа-излучение','бета-излучение','гамма-излучение',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Потеря электронов атомами вещества под внешним \nвоздействием называется:', 'ионизацией','излучением','нагревом',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Ионизирующее излучение, состоящее из тяжелых положительно \nзаряженных частиц, называется:', 'альфа-излучение','гамма-излучением','нейтронным',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Ионизирующее излучение, состоящее из фотонов высоких \nэнергий, называется:', 'альфа-излучением','бета-излучением','гамма-излучением',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Почему низкочастотное излучение не используется для \nпередачи больших объемов информации?', 'У низкочастотного излучения малая информационная емкость.','Низкочастотное излучение невозможно принимать.','Оно неспособно далеко распространяться.',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К УФ-излучению относятся волны длиной:', '15 мкм','15 нм','0,15 нм',2 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Ультрафиолетовое излучение — это:', 'поток положительно заряженных частиц','поток отрицательно заряженных частиц','один из видов электромагнитных волн',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('УФ-излучение граничит в длинноволновой области с:', 'видимым светом','рентгеновским излучением','гамма-излучением',1 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('УФ-излучение граничит в коротковолновой области с:', 'радиоволнами','видимым светом','рентгеновским излучением',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Свет — это:', 'поток нейтронов','движение заряженных частиц','электромагнитная волна',3 ,10 ,'Излучение'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('С увеличением частоты и энергии фотонов:', 'уменьшаются волновые свойства','увеличиваются волновые свойства','уменьшаются корпускулярные свойства',1 ,10 ,'Излучение'); ");
+        //Излучение
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое квазары?', 'Мощные источники радиоизлучения','Разновидность туманности','Созвездия',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое Центавр А?', 'Мощная радиогалактика','Звезда','Туманность',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Каковы размеры квазаров?', '90 а.е.','100—1000 а.е.','50- 80 а.е.',2 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('1 пк (парсек) равен…', '150 млн.км','3,26 св. лет','100 млн. км',2,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('1 астрономическая единица равна…', '150 млн.км',' 3,26 св. лет','100 млн. км',1,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что находятся в ядрах галактик?', 'Звезды','Черные дыры','Небесные тела',2 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Каков диаметр нашей Галактики?', '30 кпк','50 кпк','20 кпк',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что находится в центре Млечного пути?', 'Главная галактика','Пока что ученые не могут дать точного ответа','Черная дыра',3 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется похожий на звезду космический объект,\n излучающий быстрые импульсы радиовол', 'Квазар','Экзопланета','Пульсар',3 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Из чего состоят туманности?', 'Из микропланет','Из газа и пыли','Из темной материи',2 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие телескопы самые эффективные?', 'Те, что выведены на космическую орбиту','Те, что имеют наибольший диаметр объективов','Те, что установлены выше других',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое галактика?', 'Система из планет','Система из звёзд','Это воздушная оболочка',2 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что изучает космология?', 'Строение и эволюцию Земли','Строение и эволюцию Вселенной','Строение и эволюцию космоса',2 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Разреженные облака газа во Вселенной состоят в основном из:', 'водорода','воды','железа',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто из учёных открыл законы движения планет?', 'Кеплер','Коперник','Галилей',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Угловое удаление планеты от Солнца называется…', 'соединением','элонгацией','квадратурой',2 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Годичный параллакс служит для', 'определения расстояния до ближайших звёзд','определение расстояния до планет','расстояния, проходимого Землей за год',1 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что представляет собой гравитационное поле?', 'Искривление пространства','Искривление времени','Искривление пространства-времени',3 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('С чем сравнимы скорости далёких галактик и квазаров?', 'Со скоростью Земли','Со скоростью звука','Со скоростью света',3 ,10 ,'Галактики'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Пятна и факелы на Солнце образуются в…', 'конвективной зоне','зоне переноса лучистой энергии','фотосфере',3 ,10 ,'Галактики'); ");
+        //Галактики
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие железы имеют протоки?', 'Экзокринные','Эндокринные','Экзокринные и смешанные',3 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется гормон гипофиза, который \nрегулирует работу щитовидной железы?', 'Адренокортикотропин','Соматотропин','Тиреотропин',3 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('За что отвечает окситоцин?', 'Регулирует биоритмы','Способствует сокращению мышц','Регулирует лактацию',2 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая железа выделяет кальцитонин?', 'Паращитовидные железы','Эпифиз','Щитовидная железа',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой гормон выделяют надпочечники?', 'Кортизол','Тималин','Паратгормон',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая железа является самой крупной?', 'Печень','Слюнная','Слезная',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая железа выделяет глюкагон?', 'Поджелудочная','Потовая','Щитовидная',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое врожденный иммунитет?', 'Полученный от матери с молоком','Сформированный после перенесения заболевания','Закрепленный в геноме',3 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое приобретенный иммунитет?', 'Выработанный в процессе жизни','Передавшийся по наследству от родителей к детям','Обеспечивающий внутреннюю защиту организма',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что относится к органу иммунной системы?', 'Кожа','Желудочно-кишечный тракт','Вилочковая железа',3 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое антитела?', 'Активные белки, выделяемые иммунными клетками','Специфичные ферменты, выделяемые фагоцитами','Фагоциты, поглощающие антигены',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('За что отвечают Т-супрессоры?', 'Выработку специфичных антител','Распознавание микроорганизмов','Подавление иммунной реакции',3 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие клетки поглощают и переваривают чужеродные частицы?', 'Т-киллеры','Фагоциты','В-лимфоциты',2 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое ненасыщенные жирные кислоты?', 'Содержащие двойные связи','Не взаимодействующие с водой','Взаимодействующие с водой',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие группы липидов относятся к простым жирам?', 'Глицериды','Гликолипиды','Фосфолипиды',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Сколько процентов от массы взрослого человека составляет кровь?', '6 %','10 %','30 %',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой диаметр имеют эритроциты?', '1–5 мкм','7–10 мкм','9–13 мкм',2 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой вид лейкоцитов обезвреживает токсины?', 'Эозинофилы','Лимфоциты','Базофилы',1 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие белки плазмы содержат антитела и защищают \nорганизм от вирусов и бактерий?', 'A-глобулины','G-глобулины','B-глобулины',2 ,10 ,'Анотомия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что составляет большую часть плазмы крови?', 'Органические вещества','Неорганические вещества','Вода',3 ,10 ,'Анотомия'); ");
+        //Анотомия
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что используется в качестве топлива?', 'Метан','Сложные эфиры','Щёлочь',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что используется для изготовления чистящих веществ?', 'Воск, глицерин, эфирные масла','Сульфаты, щёлочь, глицерин, ПАВ','Металлы, водород, ферменты',2 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какие вещества являются ароматизаторами в пищевой \nпромышленности?', 'Одноатомные спирты','Сульфаты','Сложные эфиры',3 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется вещество под следующей формулой:\n Na2SO4*10H2O?', 'нитрит натрия','глауберова соль','магонцовка',2 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Кто впервые выработал систему научных названий?', 'Д. И. Менделеев','А. Лавуазье','Д. Резерфорд',2 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется водный раствор аммиака?', 'нашатырный спирт','глауберова соль','силитряный спирт',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой металл относится к щелочным?', 'Кальций','Магний','Цезий',3 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как меняется активность металлов в электрохимическом\n ряду напряжений?', 'Слева направо активность возрастает','Слева направо активность уменьшается','Активность одинакова до водорода, после – возрастает',2 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Реакция воды с каким металлом проходит медленно?', 'С натрием','С магнием','С литием',3 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('С каким простым веществом не реагирует алюминий?', 'С водородом','С кислородом','С серой',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что образуется в результате реакции \n2Na + CuCl2 + 2H2O?', 'Сначала соль, затем щёлочь','Сначала щёлочь, затем соль','Сразу образуется соль',2 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Чему соответствует порядковый номер элементов?', 'Атомной массе','Количеству изотопов','Заряду ядра',3 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В чём измеряется относительная атомная масса?', 'В атомных единицах массы','В г/моль','В граммах',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как обозначается молярная масса?', 'M','Mr','mr',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Чем отличаются друг от друга изотопы одного и того\n же элемента?', 'массовым числом','номером в таблице','числом электронов',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Порядковый номер химического элемента не показывает', 'заряд ядра атома','количество протонов',' количество нейтронов',3,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое максимальное число электронов может находиться на 3-м энергетическом уровне?', '8','9','18',3,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Чему равно значение главного квантового числа?', 'числу подуровней','числу орбиталей','числу электронов',1 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой камень под действием воды выделяет горючий газ?', 'Мрамор','Карбид кальция','Известняк',2 ,10 ,'Химия'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой металл используют для изготовления зажигательных\n бомб и для взрывчатых веществ?', 'Калий','Алюминий','Магний',2 ,10 ,'Химия'); ");
+        //Химия
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('В каком океана находятся Галапагосские острова?', 'Индийский океан','Атлантический океан','Тихий океан',3 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Как называется заморская территория Великобритании,\n оспариваемая Испанией?', 'Гибралтар','Остров Врангеля','Хасселвуд',1 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Часть речной долины, которая затапливается\n в половодье, — что это?', 'Плес','Устье','Пойма',3 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('На гербе какой страны изображен орел, держащий\n в лапах серп и молот?', 'Польша','Австрия','Венгрия',2 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое из этих государств не омывает Каспийское море?', 'Россия','Азербайджан','Узбекистан',3 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Вавельский замок, Мариацкий костел, Беловежская пуща - уже догадались?', 'Белоруссия','Румыния','Польша',3 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Остров Филы, гора Синай, оазис Сива - где можно увидеть \nэти чудеса?', 'Египет','Пакистан','Китай',1,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Где находится вулкан Келимуту с тремя кратерными озерами?', 'Япония','Индонезия','Тайвань',2,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Самый высокий водопад в мире?', 'Анхель','Ниагара','Виктория',1 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Самая длинная река России?', 'Волга','Обь','Енисей',2 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Где находится Голубая мечеть?', 'Агра, Индия','Стамбул, Турция','Марракеш, Марокко',2 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Самая большая страна Африки?', 'Ливия','Судан','Алжир',3 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое из этих морей омывает остров Санторини (Греция)?', 'Эгейское море','Красное море','Аравийское море',1 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Где находится пустыня Каракум?', 'Туркмения','Армения','Казахстан',1 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Высочайшая вершина Кавсказских гор - это...', 'Казбек','Эльбрус','Дыхтау',2 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какое из этих озер находится в Европе?', 'Виктория','Балатон','Онтарио',2 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какой остров самый большой в мире?', 'Мадагаскар','Новая Гвинея','Гренландия',3 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая пустыня расположена в южном полушарии?', 'Сахара','Атакама','Кара-Кум',2 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Какая из этих стран имеет выход к Каспийскому морю?', 'Туркменистан','Узбекистан','Афганистан',1 ,10 ,'География'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Что такое Титикака?', 'Река','Водопад','Озеро',3,10 ,'География'); ");
+        //География
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Власть - это:', 'достижение своих целей','возможность руководить, управлять','действия исходящие из личных интересов',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Глобализация - это процесс:', 'Разобщения стран','Объединения в единую систему','Развития национальных культур',2 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Природа в узком смысле - это:', 'Условия жизни, биосфера','Мир во всех его формах','Планета Земля',1,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Борьба за власть между социальными группами вызвана:', 'желанием оказаться на первых позициях','получить деньги','добиться реализации своих интересов, потребностей',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Основной закон РФ в области административного права:', 'Конституция РФ','Федеральный закон О гражданстве','Указ Президента РФ',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Источники административного права:', 'Должны соответствовать положениям Конституции РФ','Могут противоречить Конституции РФ','Могут вносить изменения в Конституцию РФ',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К принципам демократии не относится:', 'Власть большинства населения','Строгое подчинение закону','Разный объем прав граждан в зависимости от их положения',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Право на свободу слова выражается в:', 'Строгом подчинении закону','Наличии средств массовой информации','Возможности свободно выбирать профессию',2 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Конституция регулирует:', 'права и свободы человека','государственное устройство','все перечисленные вопросы',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Нормы Конституции затрагивают:', 'все стороны жизни общества','политическую сферу','экономическую и социальную сферы',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Предмет налогового права:', 'деньги','отношения','государственные органы',2 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К прямым налогам относится:', 'налог на имущество','акцизные сборы','таможенные пошлины',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('К косвенным налогам относится:', 'таможенные пошлины','налог на дарение','подоходный налог',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Безработица – это:', 'закономерный процесс','редкое явление','новое явление',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Явной функцией социальных институтов является:', 'Социализация личности','Создание норм и правил поведения','Удовлетворение потребности',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Скрытой функцией социального института может быть:', 'Повышение собственного престижа','Создание установок','Все перечисленное',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Для демократии характерно:', 'однопартийная система','сосредоточение власти в одних руках','контроль общества над властью',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Особенность тоталитарного режима:', 'большая роль вождя','отсутствие оппозиции','все перечисленное',3 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Главная цель правового государства:', 'обеспечить права и свободы','организовать хозяйственную деятельность','обеспечить функционирование власти',1 ,10 ,'Обществознание'); ");
+        stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Признак, являющийся отличительным для правового государства:', 'аппарат управления','верховенство права','официальная власть',2 ,10 ,'Обществознание'); ");
+        //Обществознание
     }
     //Заполнение таблицы БД с фактами
-    public static void writeDB3() throws SQLException{
-        stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Интересный факт №1', 'no'); ");
-        stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Интересный факт №1', '/sample/Arte/1.jpg'); ");
-        stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Интересный факт №1', '/sample/Arte/1.jpg'); ");
-        System.out.println("Таблица заполнена");
-    }
-    // вывод всех данных из таблицы
-    public static void readDB0() throws ClassNotFoundException, SQLException {
-        VictorinLits.clear();
-        result = stab.executeQuery("SELECT * FROM Victirin"); //выборки данных с помощью команды SELECT
+    public static void writeFact() throws SQLException {
+        stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Обыкновенный бегемот - парнокопытное животное, которое\nотносится к семейству бегемотовых. Бегемоты предпочитают\n обитать у пресноводных водоемов, в которых они и проводят\n большую часть времени, лишь изредка выходя из воды\nна кормежку. Бегемотов часто называют еще и гиппопотамами,\nчто в переводе с греческого языка означает речная лошадь.\nНазвание очень точное, учитывая тягу бегемотов к воде и\nвнушительные габариты этих животных.\nСреди животных немного тех, кто рискнет напасть на этого\nгиганта. Иногда на это решаются львы и крокодилы. Но,\nдаже этим свирепым хищникам не всегда удается одержать\nпобеду над бегемотом, который с виду кажется ленивым и\nнеповоротливым. Крокодилы нападают на бегемотов в воде,\nа львы на суше. Пасть бегемота способна открываться почти\nна 180 градусов, а ее размах у взрослых животных\nдостигает полутора метров. Сила челюстей у бегемота\nтакова, что он может перекусить позвоночник взрослому\nкрокодилу. При такой огромной массе животному требуется\nдо 50 кг. кормов в день. Основной рацион питания бегемота\nсостоит из травы. Но, бегемоты могут питаться и мясом\nдругих животных.', '/sample/Arts/6.jpg'); ");
+    }    // вывод всех данных из таблицы
+    // вывод части данных из таблицы по заданной теме
+    public static void readDBQueston(String topic) throws ClassNotFoundException, SQLException {
+        VictorinLits.clear();//очищаем список
+        result = stab.executeQuery("SELECT * FROM Victirin where NameTopic = '" + topic + "'"); //выборки данных с помощью команды SELECT
         while(result.next()) {
-            Victorin tipicalQueston =new Victorin(result.getInt("NumberQueston"),
+            Victorin tipicalQueston =new Victorin(result.getInt("NumberQueston"),//создаем объект с значениями извлеченными из таблицы
                     result.getString("Queston"),result.getString("AnswerA"),
                     result.getString("AnswerB"),result.getString("AnswerC"),
                     result.getInt("RightAnswer"),result.getInt("Count"),
                     result.getString("NameTopic"));
-            VictorinLits.add(tipicalQueston);
+            VictorinLits.add(tipicalQueston);//добавляем значение в спикок
         }
-        Collections.shuffle(VictorinLits);
-        for (int i=0;i<VictorinLits.size();i++){
-            System.out.println(VictorinLits.get(i).toString());
-        }
-        System.out.println("Таблица выгружена");
-    }
-    // вывод части данных из таблицы
-    public static void readDB1(String topic) throws ClassNotFoundException, SQLException {
-        result = stab.executeQuery("SELECT * FROM Victirin where 'NameTopic' = '" + topic + "'"); //выборки данных с помощью команды SELECT
-        while(result.next()) {
-            Victorin tipicalQueston =new Victorin(result.getInt("NumberQueston"),
-                    result.getString("Queston"),result.getString("AnswerA"),
-                    result.getString("AnswerB"),result.getString("AnswerC"),
-                    result.getInt("RightAnswer"),result.getInt("Count"),
-                    result.getString("NameTopic"));
-            VictorinLits.add(tipicalQueston);
-        }
-        Collections.shuffle(VictorinLits);
-        System.out.println("Таблица выгружена");
-        for (int i=0;i<VictorinLits.size();i++){
-            System.out.println(VictorinLits.get(i).toString());
-        }
+        Collections.shuffle(VictorinLits);//перемшивает коллекцию значений
     }
     //Вывод фактов из таблицы
     public static void readFact() throws ClassNotFoundException, SQLException {
-        FactsLits.clear();
+        FactsLits.clear();//очищает список
         result = stab.executeQuery("SELECT * FROM Fact"); //выборки данных с помощью команды SELECT
         while(result.next()) {
-            Facts facts = new Facts(result.getInt("Number"),
+            Facts facts = new Facts(result.getInt("Number"),//создаем объект с значениями извлеченными из таблицы
                     result.getString("FactContent"), result.getString("FotoFact"));
-            FactsLits.add(facts);
+            FactsLits.add(facts);//добавляем значение в спикок
         }
-        System.out.println("Таблица выгружена");
-        Collections.shuffle(FactsLits);
-        for (int i=0;i<FactsLits.size();i++){
-            System.out.println(FactsLits.get(i).toString());
-        }
+        Collections.shuffle(FactsLits);//перемшивает коллекцию значений
     }
     //закрытие БД
     public static void сloseDB() throws ClassNotFoundException, SQLException
@@ -106,6 +402,5 @@ public class BDVictorin {
         victorin.close();
         stab.close();
         result.close();
-        System.out.println("Соединения закрыты");
     }
 }
