@@ -67,7 +67,7 @@ public class FotoQuestonController {
     void StartButtonAction(ActionEvent event) {
         if ((NickNameText.getText() == "")||(LifeText.getText() == "")){//проверяем заполнены ли поля
             Hellowlabel.setText("Заполните поля!");}else{//если поля не заполнены то просим заполнить
-            if (convert(LifeText.getText()) < 1){
+            if ((convert(LifeText.getText()) < 1)&&(convert(LifeText.getText())>10)){
                 Hellowlabel1.setText("Такого быть не может!");
                 Text.clear();
             }else {//делаем видимыми скрытые элементы

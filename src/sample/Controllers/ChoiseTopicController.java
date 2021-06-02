@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import sample.Person.BDPerson;
 import sample.Questons.BDVictorin;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -69,30 +68,15 @@ public class ChoiseTopicController {
     @FXML
     void initialize(){
         try {
-            BDVictorin.connectionBDVictorin();
-            BDVictorin.newTableVictorin();
-            BDVictorin.newTableFact();
-
+            BDVictorin.connectionBDVictorin();//Подключение к баде занных
+            BDVictorin.newTableVictorin();//если таблицы нет то создаем
+            BDVictorin.newTableFact();//если таблицы нет то создаем
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            try {
-                BDVictorin.writeQueston();
-                BDVictorin.writeFact();
-                BDPerson.writeDB3();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            try {
-                BDVictorin.writeQueston();
-                BDVictorin.writeFact();
-                BDPerson.writeDB3();
-            } catch (SQLException throwable) {
-                throwable.printStackTrace();
-            }
         }
-        ReversButton.setOnAction(e->{
+        ReversButton.setOnAction(e->{//возврат на предыдущую форму при нажатии на кнопку
             ReversButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -106,7 +90,7 @@ public class ChoiseTopicController {
             primaryStage.setResizable(false);
             primaryStage.show();
         });
-        ResultButton.setOnAction(e->{
+        ResultButton.setOnAction(e->{//переход на общую таблицу счета при нажатии на кнопку
             ResultButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -120,7 +104,7 @@ public class ChoiseTopicController {
             primaryStage.setResizable(false);
             primaryStage.show();
         });
-        Unicbutton.setOnAction(e->{
+        Unicbutton.setOnAction(e->{//переход на общую таблицу счета при нажатии на кнопку
             Unicbutton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -134,7 +118,7 @@ public class ChoiseTopicController {
             primaryStage.setResizable(false);
             primaryStage.show();
         });
-        FishButton.setOnAction(e->{
+        FishButton.setOnAction(e->{//переход на форму с вопросами по теме Рыбки при нажатии на кнопку
             FishButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -155,7 +139,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        WormButton.setOnAction(e->{
+        WormButton.setOnAction(e->{//переход на форму с вопросами по теме Чкрвячки при нажатии на кнопку
             WormButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -176,7 +160,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        SpiderButton.setOnAction(e->{
+        SpiderButton.setOnAction(e->{//переход на форму с вопросами по теме Паукообразные при нажатии на кнопку
             SpiderButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -197,7 +181,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        TreeButton.setOnAction(e->{
+        TreeButton.setOnAction(e->{//переход на форму с вопросами по теме Деревья при нажатии на кнопку
             TreeButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -218,7 +202,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        BrdButton.setOnAction(e->{
+        BrdButton.setOnAction(e->{//переход на форму с вопросами по теме Птички при нажатии на кнопку
             BrdButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -239,7 +223,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        TravelButton.setOnAction(e->{
+        TravelButton.setOnAction(e->{//переход на форму с вопросами по теме Географические открытия при нажатии на кнопку
             TravelButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -260,7 +244,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        DiviseButton.setOnAction(e->{
+        DiviseButton.setOnAction(e->{//переход на форму с вопросами по теме Изобретения 20 века при нажатии на кнопку
             DiviseButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -281,7 +265,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        WhereTownButton.setOnAction(e->{
+        WhereTownButton.setOnAction(e->{//переход на форму с вопросами по теме А где город при нажатии на кнопку
             WhereTownButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -302,7 +286,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        AstronomyButton.setOnAction(e->{
+        AstronomyButton.setOnAction(e->{//переход на форму с вопросами по теме Звездочки при нажатии на кнопку
             AstronomyButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -323,7 +307,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        XlghtButton.setOnAction(e->{
+        XlghtButton.setOnAction(e->{//переход на форму с вопросами по теме Излучение при нажатии на кнопку
             XlghtButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -344,7 +328,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        GalaksyButton.setOnAction(e->{
+        GalaksyButton.setOnAction(e->{//переход на форму с вопросами по теме Галактика при нажатии на кнопку
             GalaksyButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -365,7 +349,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        AnothomyButton.setOnAction(e->{
+        AnothomyButton.setOnAction(e->{//переход на форму с вопросами по теме Анотомия при нажатии на кнопку
             AnothomyButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -386,7 +370,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        ChemicalButton.setOnAction(e->{
+        ChemicalButton.setOnAction(e->{//переход на форму с вопросами по теме Химия при нажатии на кнопку
             ChemicalButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -407,7 +391,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        GeografyButton.setOnAction(e->{
+        GeografyButton.setOnAction(e->{//переход на форму с вопросами по теме География при нажатии на кнопку
             GeografyButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -428,7 +412,7 @@ public class ChoiseTopicController {
                 throwables.printStackTrace();
             }
         });
-        PeopleButton.setOnAction(e->{
+        PeopleButton.setOnAction(e->{//переход на форму с вопросами по теме Обществознание при нажатии на кнопку
             PeopleButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;

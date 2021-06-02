@@ -26,6 +26,7 @@ public class FactWindowController {
 
     @FXML
     private ImageView Imagebox1;
+    Image image = new Image("/sample/Arts/1.jpg");
 
     @FXML
     void initialize() {
@@ -47,7 +48,7 @@ public class FactWindowController {
             stage.show();
         });
         FactsLits = BDVictorin.getFactsLits();//достали лист с фактами
-        Image image = new Image(FactsLits.get(0).getFotoFact());//загрузили изображение
+        image = new Image(FactsLits.get(0).getFotoFact());//загрузили изображение
         Commentary.setText(FactsLits.get(0).getFactContent());//Добавили на экран факт
         Imagebox1.setImage(image);//Добавили изображение
     }

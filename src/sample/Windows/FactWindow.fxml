@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.FactWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.FactWindowController">
     <children>
-        <Button fx:id="ReversButton" layoutX="20.0" layoutY="736.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
+        <Button fx:id="ReversButton" layoutX="14.0" layoutY="791.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="&lt;=" textFill="#fce4ff">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
         </Button>
-        <Label fx:id="Commentary" alignment="CENTER" layoutX="407.0" layoutY="102.0" prefHeight="683.0" prefWidth="777.0" style="-fx-border-radius: 70; -fx-border-color: #800080;" textFill="PURPLE">
+        <Label fx:id="Commentary" alignment="CENTER" layoutX="407.0" layoutY="102.0" prefHeight="733.0" prefWidth="777.0" style="-fx-border-radius: 70; -fx-border-color: #800080;" textFill="PURPLE">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
