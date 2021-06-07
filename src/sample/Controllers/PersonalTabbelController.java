@@ -68,29 +68,32 @@ public class PersonalTabbelController {
     @FXML
     void SeachButtonActon(ActionEvent event) {
         try {
-
             if (LifeText.getText() == ""){
                 W.setText("Заполните поле!");
             }else {
                 BDPerson.SelecName(LifeText.getText());
                 LifeText.clear();
                 PersonData = BDPerson.getPersonData();//достаем считанные значения
-                // Устанавливаем тип и значение которое должно хранится в колонке
-                NumberPerson.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("Number"));
-                Nicname.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Nic"));
-                Title.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Title"));
-                NameGame.setCellValueFactory(new PropertyValueFactory<Gamer, String>("NameGame"));
-                GameCount.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("TotalCount"));
-                FactColum.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("FactNumber"));
-                // Заполняем таблицу данными
-                RecordCount.setItems(PersonData);
-                // Устанавливаем тип и значение которое должно хранится в колонке
-                Ttl2.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Title"));
-                G2.setCellValueFactory(new PropertyValueFactory<Gamer, String>("NameGame"));
-                // Заполняем таблицу данными
-                TtlANG.setItems(PersonData);
-                FctNbr.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("FactNumber"));
-                Nubr.setItems(PersonData);
+                if (PersonData.size() == 0){
+                    W.setText("Такого игрока нет");
+                }else{
+                    // Устанавливаем тип и значение которое должно хранится в колонке
+                    NumberPerson.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("Number"));
+                    Nicname.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Nic"));
+                    Title.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Title"));
+                    NameGame.setCellValueFactory(new PropertyValueFactory<Gamer, String>("NameGame"));
+                    GameCount.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("TotalCount"));
+                    FactColum.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("FactNumber"));
+                    // Заполняем таблицу данными
+                    RecordCount.setItems(PersonData);
+                    // Устанавливаем тип и значение которое должно хранится в колонке
+                    Ttl2.setCellValueFactory(new PropertyValueFactory<Gamer, String>("Title"));
+                    G2.setCellValueFactory(new PropertyValueFactory<Gamer, String>("NameGame"));
+                    // Заполняем таблицу данными
+                    TtlANG.setItems(PersonData);
+                    FctNbr.setCellValueFactory(new PropertyValueFactory<Gamer, Integer>("FactNumber"));
+                    Nubr.setItems(PersonData);
+                }
             }
         } catch (SQLException throwables) {
             W.setText("Такого игрока нет");

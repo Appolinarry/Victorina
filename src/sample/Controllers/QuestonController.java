@@ -19,7 +19,7 @@ import sample.Questons.BDVictorin;
 import sample.Questons.Facts;
 import sample.Questons.Victorin;
 
-public class FotoQuestonController {
+public class QuestonController {
 
     private  static ArrayList<Victorin> VictorinLits = new ArrayList<>();//List для считывания вопросов
     private  static ArrayList<Facts> FactsLits = new ArrayList<>();//List для считывания фактов
@@ -118,18 +118,17 @@ public class FotoQuestonController {
                         Hellowlabel1.setVisible(true);
                         Hellowlabel1.setDisable(false);
                         Hellowlabel1.setText("Вы можете прокомментировать игру в поле ответа\n" +
-                                "Вы можете нажать получить приз нажав на кнопку");
+                                "Вы можете нажать получить приз, нажав на кнопку");
                         AnswerButton1.setDisable(false);
                         AnswerButton1.setVisible(true);
                         AnswerButton.setVisible(false);
                         AnswerButton.setDisable(true);
                         Text.clear();
-                        BDPerson.writeDB2(NickNameText.getText(),title,VictorinLits.get(i).getNameTopic(),count,
-                                FactsLits.get(0).getNumber());
                     }
                     Commentary.setText(VictorinLits.get(i).toString());
                 }else{
                     life--;
+                    LifeLabel.setText(Integer.toString(life));
                     if (life == 0){
                         try {
                             BDPerson.readDBTitle(VictorinLits.get(0).getNameTopic(), "No");
@@ -156,7 +155,6 @@ public class FotoQuestonController {
                     }
                 }
             }else {Hellowlabel.setText("Такого ответа нет");
-                System.out.println("Такого ответа нет");
             }
             Text.clear();
         }
@@ -196,18 +194,6 @@ public class FotoQuestonController {
         AnswerButton1.setDisable(false);
         AnswerButton1.setVisible(false);
         AnswerButton1.setOnAction(e->{
-            AnswerButton1.getScene().getWindow().hide();
-            Stage primaryStage = new Stage();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FactWindow.fxml"));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            primaryStage.setTitle("Приз игры");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setResizable(false);
-            primaryStage.show();
             try {
                 BDPerson.readDBTitle(VictorinLits.get(0).getNameTopic(), "Yes");
             } catch (ClassNotFoundException | SQLException ex) {
@@ -221,6 +207,24 @@ public class FotoQuestonController {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            AnswerButton1.getScene().getWindow().hide();
+            Stage primaryStage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FactWindow.fxml"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            primaryStage.setTitle("Приз игры");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.setResizable(false);
+            primaryStage.show();
+            try {
+                BDPerson.writeDB2(NickNameText.getText(),title,VictorinLits.get(i).getNameTopic(),count,
+                        FactsLits.get(0).getNumber());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         });
         try {
             BDVictorin.readFact();
@@ -228,7 +232,6 @@ public class FotoQuestonController {
             e.printStackTrace();
         }
         FactsLits = BDVictorin.getFactsLits();
-
     }
     //перевод из текста в строку
     private static int convert (String str)

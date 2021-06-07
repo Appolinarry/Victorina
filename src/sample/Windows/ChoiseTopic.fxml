@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ChoiseTopicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ChoiseTopicController">
     <children>
         <Label layoutX="155.0" layoutY="38.0" text="Выберете тему:" textFill="PURPLE">
             <font>
@@ -44,7 +43,7 @@
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="SpiderButton" layoutX="368.0" layoutY="217.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Паучкообразные" textFill="#fce4ff">
+      <Button fx:id="SpiderButton" layoutX="368.0" layoutY="217.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Паукообразные" textFill="#fce4ff">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -84,7 +83,7 @@
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="AnothomyButton" layoutX="488.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Анотомия" textFill="#fce4ff">
+      <Button fx:id="AnothomyButton" layoutX="488.0" layoutY="312.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-background-color: #800080;" text="Анатомия" textFill="#fce4ff">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

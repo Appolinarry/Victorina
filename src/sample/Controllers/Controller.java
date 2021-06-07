@@ -16,18 +16,11 @@ public class Controller {
     private Button WelcomeButton;
 
     @FXML
-    private Button ReversButton;
-
-    @FXML
     void initialize() throws SQLException, ClassNotFoundException {
         BDPerson.connectionBDPerson();//Подключаем БД Person
         BDPerson.newTablePerson();//создание таблички person
         BDPerson.newTableWinner();//создание таблички winner
         BDPerson.newTableTitle();//создание таблицы титулов
-        ReversButton.setOnAction(e->{//закрытие формы м приложения
-            Stage stage = (Stage) ReversButton.getScene().getWindow();
-            stage.close();
-        });
         WelcomeButton.setOnAction(e->{//Переход на форму с котегориями вопросов
             WelcomeButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();

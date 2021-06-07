@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import sample.Person.BDPerson;
 import sample.Questons.BDVictorin;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -123,7 +124,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -144,7 +145,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -165,7 +166,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -186,7 +187,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -207,7 +208,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -228,7 +229,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -249,7 +250,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -270,7 +271,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -291,7 +292,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -312,7 +313,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -333,7 +334,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -354,7 +355,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -375,7 +376,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -396,7 +397,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -417,7 +418,7 @@ public class ChoiseTopicController {
             Stage primaryStage = new Stage();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/sample/Windows/FotoQueston.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/sample/Windows/Queston.fxml"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
