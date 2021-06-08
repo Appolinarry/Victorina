@@ -87,7 +87,7 @@ public class QuestonController {
                     //оповещаем пользователя
                     Hellowlabel1.setText("Такого быть не может!");
                     //очищаем поле
-                    Text.clear();
+                    LifeText.clear();
                 }else {
                     //делаем видимыми скрытые элементы
                     Commentary.setVisible(true);
