@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.Controller">
     <children>
-        <Label layoutX="136.0" layoutY="40.0" text="Добро пожаловать!" textFill="PURPLE">
+        <Label fx:id="label1" layoutX="136.0" layoutY="40.0" text="Добро пожаловать!" textFill="PURPLE">
             <font>
                 <Font name="Times New Roman" size="64.0" />
             </font>

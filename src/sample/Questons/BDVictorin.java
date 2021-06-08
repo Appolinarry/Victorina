@@ -421,11 +421,4 @@ public class BDVictorin {
         }
         Collections.shuffle(FactsLits);//перемшивает коллекцию значений
     }
-    //закрытие БД
-    public static void сloseDB() throws ClassNotFoundException, SQLException
-    {
-        victorin.close();
-        stab.close();
-        result.close();
-    }
 }

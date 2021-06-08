@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ChoiseTopicController">
     <children>
-        <Label layoutX="155.0" layoutY="38.0" text="Выберете тему:" textFill="PURPLE">
+        <Label fx:id="label2" layoutX="155.0" layoutY="38.0" text="Выберете тему:" textFill="PURPLE">
             <font>
                 <Font name="Times New Roman" size="64.0" />
             </font>

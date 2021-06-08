@@ -66,6 +66,15 @@ public class PersonalTabbelController {
     private Label W;
 
     @FXML
+    private Label L1;
+
+    @FXML
+    private Label L2;
+
+    @FXML
+    private Label L3;
+
+    @FXML
     void SeachButtonActon(ActionEvent event) {
         try {
             if (LifeText.getText() == ""){
@@ -102,6 +111,7 @@ public class PersonalTabbelController {
     }
     @FXML
     void initialize() {
+        //возврат на форму меню при нажатии на кнопку
         ReversButton.setOnAction(e->{
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();

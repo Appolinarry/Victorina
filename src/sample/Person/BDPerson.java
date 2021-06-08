@@ -196,11 +196,4 @@ public class BDPerson {
             PersonData.add(winner);//заполнение списка
         }
     }
-    //закрытие БД
-    public static void сloseDB() throws ClassNotFoundException, SQLException
-    {
-        person.close();
-        stab.close();
-        result.close();
-    }
 }

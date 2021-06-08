@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-border-color: #800080; -fx-border-width: 5; -fx-background-color: FCE4FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.PersonalTabbelController">
     <children>
-        <Label layoutX="256.0" layoutY="24.0" text="Результаты прошлых игр" textFill="PURPLE">
+        <Label fx:id="L1" layoutX="256.0" layoutY="24.0" text="Результаты прошлых игр" textFill="PURPLE">
             <font>
                 <Font name="Times New Roman" size="64.0" />
             </font>
@@ -52,12 +52,12 @@
           <TableColumn fx:id="FctNbr" prefWidth="75.0" text="№" />
         </columns>
       </TableView>
-      <Label fx:id="W1" layoutX="803.0" layoutY="274.0" text="Полученные титулы" textFill="PURPLE">
+      <Label fx:id="L2" layoutX="803.0" layoutY="274.0" text="Полученные титулы" textFill="PURPLE">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="W11" layoutX="1073.0" layoutY="274.0" text="№ Фактов" textFill="PURPLE">
+      <Label fx:id="L3" layoutX="1073.0" layoutY="274.0" text="№ Фактов" textFill="PURPLE">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

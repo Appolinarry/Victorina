@@ -25,12 +25,16 @@ public class FactWindowController {
     private Label Commentary;
 
     @FXML
+    private Label Commentary1;
+
+    @FXML
     private ImageView Imagebox1;
     Image image = new Image("/sample/Arts/1.jpg");
 
     @FXML
     void initialize() {
-        ReversButton.setOnAction(e->{//переход в главное меню
+        //возврат на форму меню при нажатии на кнопку
+        ReversButton.setOnAction(e->{
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();
             FXMLLoader loader = new FXMLLoader();
@@ -47,9 +51,13 @@ public class FactWindowController {
             stage.setResizable(false);
             stage.show();
         });
-        FactsLits = BDVictorin.getFactsLits();//достали лист с фактами
-        image = new Image(FactsLits.get(0).getFotoFact());//загрузили изображение
-        Commentary.setText(FactsLits.get(0).getFactContent());//Добавили на экран факт
-        Imagebox1.setImage(image);//Добавили изображение
+        //достали лист с фактами
+        FactsLits = BDVictorin.getFactsLits();
+        //загрузили изображение
+        image = new Image(FactsLits.get(0).getFotoFact());
+        //Добавили на экран факт
+        Commentary.setText(FactsLits.get(0).getFactContent());
+        //Добавили изображение
+        Imagebox1.setImage(image);
     }
 }

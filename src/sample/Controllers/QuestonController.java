@@ -20,15 +20,21 @@ import sample.Questons.Facts;
 import sample.Questons.Victorin;
 
 public class QuestonController {
-
-    private  static ArrayList<Victorin> VictorinLits = new ArrayList<>();//List для считывания вопросов
-    private  static ArrayList<Facts> FactsLits = new ArrayList<>();//List для считывания фактов
-    private  static ArrayList<TitleCreator> TitleCreator = new ArrayList<>();//List для считывания титулов
-
+    //List для считывания вопросов
+    private  static ArrayList<Victorin> VictorinLits = new ArrayList<>();
+    //List для считывания фактов
+    private  static ArrayList<Facts> FactsLits = new ArrayList<>();
+    //List для считывания титулов
+    private  static ArrayList<TitleCreator> TitleCreator = new ArrayList<>();
+    //номер вопроса
     private int i = 0;
+    //очки в игре
     private int count = 0;
+    //количесвто возможностей ошибиться
     private int life = 0;
+    //титул игрока
     private String title;
+    //количество жизней заданное пользователем
     private  int totallife;
     @FXML
     private Label Hellowlabel;
@@ -61,57 +67,77 @@ public class QuestonController {
     private Label LifeLabel;
 
     @FXML
+    private Label LifeLabel1;
+
+    @FXML
     private Button AnswerButton1;
 
     @FXML
     void StartButtonAction(ActionEvent event) {
-        if ((NickNameText.getText() == "")||(LifeText.getText() == "")){//проверяем заполнены ли поля
-            Hellowlabel.setText("Заполните поля!");}else{//если поля не заполнены то просим заполнить
-            if ((convert(LifeText.getText()) < 1)&&(convert(LifeText.getText())>10)){
+        //проверяем заполнены ли поля
+        if ((NickNameText.getText() == "")||(LifeText.getText() == "")){
+            //если поля не заполнены то просим заполнить
+            Hellowlabel.setText("Заполните поля!");
+        }else{
+            if ((convert(LifeText.getText()) == 0)){
                 Hellowlabel1.setText("Такого быть не может!");
-                Text.clear();
-            }else {//делаем видимыми скрытые элементы
-                Commentary.setVisible(true);
-                AnswerButton.setDisable(false);
-                Text.setDisable(false);
-                Commentary.setDisable(false);
-                AnswerButton.setVisible(true);
-                Text.setVisible(true);
-                Hellowlabel.setText("Внимание вопрос");// устанавливаем новый текст на верхний Label
-                Hellowlabel1.setDisable(true);//Скрываема часть видимых элементов
-                Hellowlabel1.setVisible(false);
-                StartButton.setDisable(true);
-                StartButton.setVisible(false);
-                NickNameText.setDisable(true);
-                NickNameText.setVisible(false);
-                LifeText.setVisible(false);
-                LifeText.setDisable(true);
-                LifeLabel.setText(LifeText.getText());// устанавливаем количество жизней
-                life = convert(LifeText.getText());//количество жизней
-                totallife = convert(LifeText.getText());//количество жизней
-                //достаем спислк вопросов по теме
-                VictorinLits = BDVictorin.getVictorinLits();
-                Commentary.setText(VictorinLits.get(i).toString());//выводим вопрос на форму
+                LifeText.clear();
+            }else {
+                if ((convert(LifeText.getText()) < 1)||(convert(LifeText.getText())>10)){
+                    //оповещаем пользователя
+                    Hellowlabel1.setText("Такого быть не может!");
+                    //очищаем поле
+                    Text.clear();
+                }else {
+                    //делаем видимыми скрытые элементы
+                    Commentary.setVisible(true);
+                    AnswerButton.setDisable(false);
+                    Text.setDisable(false);
+                    Commentary.setDisable(false);
+                    AnswerButton.setVisible(true);
+                    Text.setVisible(true);
+                    // устанавливаем новый текст на верхний Label
+                    Hellowlabel.setText("Внимание вопрос");
+                    //Скрываема часть видимых элементов
+                    Hellowlabel1.setDisable(true);
+                    Hellowlabel1.setVisible(false);
+                    StartButton.setDisable(true);
+                    StartButton.setVisible(false);
+                    NickNameText.setDisable(true);
+                    NickNameText.setVisible(false);
+                    LifeText.setVisible(false);
+                    LifeText.setDisable(true);
+                    // устанавливаем количество жизней
+                    LifeLabel.setText(LifeText.getText());
+                    //количество жизней
+                    life = convert(LifeText.getText());
+                    //количество жизней
+                    totallife = convert(LifeText.getText());
+                    //достаем спислк вопросов по теме
+                    VictorinLits = BDVictorin.getVictorinLits();
+                    //выводим вопрос на форму
+                    Commentary.setText(VictorinLits.get(i).toString());
+                }
             }
         }
     }
     @FXML
     void AnswerButtonAction(ActionEvent event) throws SQLException {
         if (Text.getText() == ""){
+            //проверяем заполнено ли поле
             Hellowlabel.setText("Введите ответ");
         }else {
+            //проверяем ввели ли ответ корректно
             if ((convert(Text.getText()) == 3)||(convert(Text.getText()) == 2)||(convert(Text.getText()) == 1)){
+                //проверяем правильный ли ответ
                 if (convert(Text.getText())==VictorinLits.get(i).getRightAnswer()) {
+                    //добавляем очки
                     count+= VictorinLits.get(i).getCountQueston();
                     if (i < 10){
-                        i++;}else {
-                        try {
-                            BDPerson.readDBTitle(VictorinLits.get(0).getNameTopic(), "Yes");
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        TitleCreator = BDPerson.getTitleCreator();
-                        title = TitleCreator.get(0).getTitle();
+                        //прибавляем номер вопроса
+                        i++;
+                    }else {
+                        //поздравляем ирока и показываем часть скрытых элементов и скрываем часть видимых
                         Hellowlabel.setText("Вы победили!");
                         Commentary.setDisable(true);
                         Commentary.setVisible(false);
@@ -125,11 +151,14 @@ public class QuestonController {
                         AnswerButton.setDisable(true);
                         Text.clear();
                     }
+                    //показываем новый вопрос
                     Commentary.setText(VictorinLits.get(i).toString());
                 }else{
+                    //отнимаем жизнь за неправильный ответ
                     life--;
                     LifeLabel.setText(Integer.toString(life));
                     if (life == 0){
+                        //если жизни кончились, то достаем титул
                         try {
                             BDPerson.readDBTitle(VictorinLits.get(0).getNameTopic(), "No");
                         } catch (ClassNotFoundException e) {
@@ -137,6 +166,7 @@ public class QuestonController {
                         }
                         TitleCreator = BDPerson.getTitleCreator();
                         title = TitleCreator.get(0).getTitle();
+                        //оповещаем игрока о приграше
                         Hellowlabel.setText("Вы проиграли!");
                         Commentary.setDisable(true);
                         Commentary.setVisible(false);
@@ -149,8 +179,11 @@ public class QuestonController {
                         AnswerButton.setDisable(true);
                         Text.clear();
                     }else {
+                        //прибавляем номер вопроса
                         i++;
+                        //выводим вопрос
                         Commentary.setText(VictorinLits.get(i).toString());
+                        // устанавливаем новое количество жизней
                         LifeLabel.setText(Integer.toString(life));
                     }
                 }
@@ -162,7 +195,8 @@ public class QuestonController {
 
     @FXML
     void initialize() {
-        ReversButton.setOnAction(e->{//переход на форму с выбором
+        //возврат на форму меню при нажатии на кнопку
+        ReversButton.setOnAction(e->{
             ReversButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -175,6 +209,7 @@ public class QuestonController {
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
+            //запись результатов игры
             try {
                 BDPerson.writeDB(NickNameText.getText(),VictorinLits.get(i).getNameTopic(), count, title,
                         Text.getText(),totallife, totallife - life);
@@ -194,19 +229,24 @@ public class QuestonController {
         AnswerButton1.setDisable(false);
         AnswerButton1.setVisible(false);
         AnswerButton1.setOnAction(e->{
+            //считываем титулы по теме, при выйграше
             try {
                 BDPerson.readDBTitle(VictorinLits.get(0).getNameTopic(), "Yes");
             } catch (ClassNotFoundException | SQLException ex) {
                 ex.printStackTrace();
             }
+            //считываем полученные титулы в List
             TitleCreator = BDPerson.getTitleCreator();
+            //достаем титул
             title = TitleCreator.get(0).getTitle();
+            //записываем результаты игры в таблицу результатов
             try {
                 BDPerson.writeDB(NickNameText.getText(),VictorinLits.get(i).getNameTopic(), count, title,
                         Text.getText(),totallife, totallife - life);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            //переход на форму интересный факт
             AnswerButton1.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -219,6 +259,7 @@ public class QuestonController {
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
+            //запись данных в таблицу подедителей
             try {
                 BDPerson.writeDB2(NickNameText.getText(),title,VictorinLits.get(i).getNameTopic(),count,
                         FactsLits.get(0).getNumber());

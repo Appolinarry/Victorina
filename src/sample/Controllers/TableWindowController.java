@@ -2,12 +2,12 @@ package sample.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -51,22 +51,8 @@ public class TableWindowController {
     @FXML
     private TableColumn<Gamer, Integer> OurCount;
 
-
     @FXML
-    void ReversButtonAction(ActionEvent event) {
-        ReversButton.getScene().getWindow().hide();
-        Stage primaryStage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/sample/Windows/ChoiseTopic.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        primaryStage.setTitle("Выбор игры");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
-        primaryStage.show();
-    }
+    private Label label3;
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
@@ -84,6 +70,7 @@ public class TableWindowController {
         // Заполняем таблицу данными
         RecordCount.setItems(PersonData);
         ReversButton.setOnAction(e->{
+            //возврат на форму меню при нажатии на кнопку
             Stage stage = (Stage) ReversButton.getScene().getWindow();
             stage.close();
             FXMLLoader loader = new FXMLLoader();

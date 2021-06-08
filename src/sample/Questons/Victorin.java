@@ -1,14 +1,22 @@
 package sample.Questons;
 
 public class Victorin {
-    private String Queston;//Вопрос
-    private String AnswerA;//Вариант ответа №1
-    private String AnswerB;//Вариант ответа №2
-    private String AnswerC;//Вариант ответа №3
-    private int RightAnswer;//Правильный вариант ответа
-    private int NumberQueston;//Номер вопроса в таблице
-    private int CountQueston;//очки за вопрос
-    private String NameTopic; //название темы
+    //Вопрос
+    private String Queston;
+    //Вариант ответа №1
+    private String AnswerA;
+    //Вариант ответа №2
+    private String AnswerB;
+    //Вариант ответа №3
+    private String AnswerC;
+    //Правильный вариант ответа
+    private int RightAnswer;
+    //Номер вопроса в таблице
+    private int NumberQueston;
+    //очки за вопрос
+    private int CountQueston;
+    //название темы
+    private String NameTopic;
     //конструктор класса
     public Victorin(int number,String queston, String answera,String answerb,String answerc, int rightanswer,
                     int count, String nametopic) {
