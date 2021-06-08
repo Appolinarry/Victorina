@@ -1,10 +1,14 @@
 package sample.Person;
 
 public class TitleCreator {
-    private int NumberTitle;//номер титула
-    private String NameGame;//название темы игры
-    private String Title;//титул
-    private String WinOrNot;//индикатор победы в игре
+    //номер титула
+    private int NumberTitle;
+    //название темы игры
+    private String NameGame;
+    //титул
+    private String Title;
+    //индикатор победы в игре
+    private String WinOrNot;
     //конструктор класса
     public TitleCreator(int numberTitle, String nameGame, String title, String winOrNot) {
         NumberTitle = numberTitle;

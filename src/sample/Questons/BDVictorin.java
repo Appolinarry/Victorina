@@ -5,50 +5,55 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BDVictorin {
+    // возвращает значение VictorinLits
     public static ArrayList<Victorin> getVictorinLits() {
         return VictorinLits;
-    }// возвращает значение ArrayList
-
+    }
+    // устанавливает VictorinLits
     public static void setVictorinLits(Victorin victorin) {
         VictorinLits.add(victorin);
-    }// устанавливает ArrayList
-
-    private static ArrayList<Victorin> VictorinLits = new ArrayList<>();//List для считывания вопросов
-
+    }
+    //List для считывания вопросов
+    private static ArrayList<Victorin> VictorinLits = new ArrayList<>();
+    // возвращает значение FactsLits
     public static ArrayList<Facts> getFactsLits() {
         return FactsLits;
-    }// возвращает значение ArrayList
-
+    }
+    // устанавливает FactsLits
     public static void setFactsLits(Facts facts) {
         FactsLits.add(facts);
-    }// устанавливает ArrayList
-
-    private static ArrayList<Facts> FactsLits = new ArrayList<>();//List для считывания фактов
-    public static Connection victorin; //Для соединения с БД необходимо использовать класс Connection пакета java.sql.
-    public static Statement stab; //используется для выполнения SQL-запросов
-    public static ResultSet result;//представляет результирующий набор данных и обеспечивает приложению построчный доступ к результатам запросов
-
+    }
+    //List для считывания фактов
+    private static ArrayList<Facts> FactsLits = new ArrayList<>();
+    //Для соединения с БД необходимо использовать класс Connection пакета java.sql.
+    public static Connection victorin;
+    //используется для выполнения SQL-запросов
+    public static Statement stab;
+    //представляет результирующий набор данных и обеспечивает приложению построчный доступ к результатам запросов
+    public static ResultSet result;
     //подключение к BDVictorin
     public static void connectionBDVictorin() throws ClassNotFoundException, SQLException {
         victorin = null;
-        Class.forName("org.sqlite.JDBC");  //("имя движка") вызывает динамическую загрузку класса, org.sqlite.JDBC принадлежит к jar sqlite-jdbc
-        victorin = DriverManager.getConnection("jdbc:sqlite:dataVictorin.s3db"); //("протокол:движок:имя_файла_БД")находит java.sql.Driver соответствующей базы данных и вызывает у него метод connect (метод connect всегда создает базу данных заранее)
+        //("имя движка") вызывает динамическую загрузку класса, org.sqlite.JDBC принадлежит к jar sqlite-jdbc
+        Class.forName("org.sqlite.JDBC");
+        //("протокол:движок:имя_файла_БД")находит java.sql.Driver соответствующей базы данных и вызывает у него метод connect (метод connect всегда создает базу данных заранее)
+        victorin = DriverManager.getConnection("jdbc:sqlite:dataVictorin.s3db");
     }
-
     // cоздание таблицы БД с 3 ответами
     public static void newTableVictorin() throws ClassNotFoundException, SQLException {
-        stab = victorin.createStatement();//создание экземпляра класса Statement
+        //создание экземпляра класса Statement
+        stab = victorin.createStatement();
+        // позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
         stab.execute("CREATE TABLE if not exists 'Victirin' ('NumberQueston' INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " 'Queston' text, 'AnswerA' text,'AnswerB' text,'AnswerC' text,'RightAnswer' int,'Count'int," +
-                "'NameTopic' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
-    }
-
+                "'NameTopic' text);");    }
     // cоздание таблицы БД с интересными фактами
     public static void newTableFact() throws ClassNotFoundException, SQLException {
-        stab = victorin.createStatement();//создание экземпляра класса Statement
+        //создание экземпляра класса Statement
+        stab = victorin.createStatement();
+        // позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
         stab.execute("CREATE TABLE if not exists 'Fact' ('Number' INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " 'FactContent' text, 'FotoFact' text);");// позволяет выполнять различные статичные SQL запросы, используется, когда операторы SQL возвращают более одного набора данных, более одного счетчика обновлений или и то, и другое
-    }
+                " 'FactContent' text, 'FotoFact' text);");    }
     // заполнение таблицы БД с 3 вариантами ответов
     public static void writeQueston() throws SQLException {
         stab.execute("INSERT INTO 'Victirin' ('Queston','AnswerA','AnswerB','AnswerC','RightAnswer','Count','NameTopic') VALUES ('Оригинальность этой рыбы заключается в том, что она,\n защищаясь от хищников, превращается в подобие футбольного\n мяча с шипами', 'рыба-хамелеон','рыба-дикобраз', 'рыба-меч',2,10,'Рыбки'); ");
@@ -395,30 +400,42 @@ public class BDVictorin {
         stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Территория Боливии более одного миллиона квадратных\nкилометров, по этому показателю она входит\nв тридцатку крупнейших стран мира. А вот население\nоколо 11 000 000 человек. Таким образом, на одном\nквадратном километре проживают чуть более десятка\nболивийцев. Официальное название страны звучит так\nМногонациональное Государство Боливия. В Боливии\nсразу три государственных языка - испанский,\nаймара и кечуа.\nСвое современное название Боливия получила\nв 1825 году в честь Симона Боливара, руководителя\nборьбы за независимость испанских колоний. Благодаря\nБоливару независимость, кроме Боливии, получили\nтакже Венесуэла, Эквадор, Перу, Колумбия. Сам Боливар\nпланировал объединить все эти государства в Южные\nСоединённые Штаты, но был обвинен в желании\nобразовать империю и стать диктатором.\nБоливия является родиной картофеля, местные индейцы\nначали культивировать его около 5 000 лет назад.\nВ настоящее время в стране выращивается около\n250 видов картофеля, а в Андах и сейчас можно найти\nэти корнеплоды, растущие в дикой природе. В XVI веке\n испанцы, которым картофель пришелся по вкусу,\nначали завозить его в Европу, через некоторое время\nон вошел в число самых распространенных\nсельскохозяйственных культур Старого Света.', '/sample/Arts/23.jpg'); ");
         stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Красное море находится в тектонической впадине\nИндийского океана между Аравийским полуостровом\nи Африкой. Через Суэцкий канал Красное море соединено\nс Средиземным морем, омывает берега стран Азии и Африки.\nКрасное море входит в состав Мирового океана и является\nсамым соленым. Показатель солености его вод составляет\nдо 60 грамм соли на литр жидкости. Многие возразят, что\n самое соленое Мертвое море, но, во-первых, это озеро,\nво-вторых, оно не является частью Мирового океана.\nПо прозрачности Красное море входит в лидеры среди\nвсех морей. Дело в том, что у этого водоема отсутствуют\nпритоки в виде рек, а ведь именно их воды приносят ил\nи прочие загрязняющие субстанции.\nПитающих рек у Красного моря нет, осадков в этой\nместности выпадает в 20 раз меньше, чем испаряется\nводы с поверхности водоема. Казалось бы, Красное море\nдолжно пересохнуть. Но это не происходит из-за того,\nчто запасы воды восполняются за счет вод\nАденского залива.', '/sample/Arts/24.jpg'); ");
         stab.execute("INSERT INTO 'Fact' ('FactContent','FotoFact') VALUES ('Монеты-чешуйки имеют удивительную историю.\nИсследователи затрудняются назвать точную дату\nих введения в оборот, но точно известно, что их\nвыпуск прекратился после финансовой реформы Петра\nПервого 1718 года. Свое название эти монетки\nполучили благодаря своему внешнему виду, считалось,\nчто они похожи на рыбью чешую.\nДля изготовления чешуек применялся различный металл.\nЧаще всего это было серебро. Гораздо реже\nиспользовалась медь. Предполагается, что могло\nиспользоваться и золото. Вес монеток был небольшим,\nне более одного грамма. При этом, определенного\nноминала чешуйки не имели, их стоимость определялась\nобщим весом. При покупке товара монеты просто\nвзвешивали.\nПроцесс изготовления чешуек был достаточно прост:\nсеребряную проволоку резали на примерно равные\nкусочки, затем расплющивали их. На аверсе чаще\nвсего чеканилось имя князя, а на реверсе различные\nрисунки. Например, изображения всадника с копьем,\nцветов или животных. Надписи плохо читались, монеты\nполучались неправильной формы. Но, в этом и был их\nплюс: каждая чешуйка являлась уникальной, найти две\nодинаковые было практически невозможно. Форме монет\nособого внимания не уделяли, ведь главное их\nдостоинство - вес драгоценного металла, а не красота.', '/sample/Arts/25.jpg'); ");
-    }    // вывод всех данных из таблицы
+    }
     // вывод части данных из таблицы по заданной теме
     public static void readDBQueston(String topic) throws ClassNotFoundException, SQLException {
-        VictorinLits.clear();//очищаем список
-        result = stab.executeQuery("SELECT * FROM Victirin where NameTopic = '" + topic + "'"); //выборки данных с помощью команды SELECT
+        //очищаем список
+        VictorinLits.clear();
+        //выборки данных с помощью команды SELECT
+        result = stab.executeQuery("SELECT * FROM Victirin where NameTopic = '" + topic + "'");
+        //Запись данных из БД в List
         while(result.next()) {
-            Victorin tipicalQueston =new Victorin(result.getInt("NumberQueston"),//создаем объект с значениями извлеченными из таблицы
+            //создаем объект с значениями извлеченными из таблицы
+            Victorin tipicalQueston =new Victorin(result.getInt("NumberQueston"),
                     result.getString("Queston"),result.getString("AnswerA"),
                     result.getString("AnswerB"),result.getString("AnswerC"),
                     result.getInt("RightAnswer"),result.getInt("Count"),
                     result.getString("NameTopic"));
-            VictorinLits.add(tipicalQueston);//добавляем значение в спикок
+            //добавляем значение в спикок
+            VictorinLits.add(tipicalQueston);
         }
-        Collections.shuffle(VictorinLits);//перемшивает коллекцию значений
+        //перемшивает коллекцию значений
+        Collections.shuffle(VictorinLits);
     }
     //Вывод фактов из таблицы
     public static void readFact() throws ClassNotFoundException, SQLException {
-        FactsLits.clear();//очищает список
-        result = stab.executeQuery("SELECT * FROM Fact"); //выборки данных с помощью команды SELECT
+        //очищает список
+        FactsLits.clear();
+        //выборки данных с помощью команды SELECT
+        result = stab.executeQuery("SELECT * FROM Fact");
+        //Запись данных из БД в List
         while(result.next()) {
-            Facts facts = new Facts(result.getInt("Number"),//создаем объект с значениями извлеченными из таблицы
+            //создаем объект с значениями извлеченными из таблицы
+            Facts facts = new Facts(result.getInt("Number"),
                     result.getString("FactContent"), result.getString("FotoFact"));
-            FactsLits.add(facts);//добавляем значение в спикок
+            //добавляем значение в спикок
+            FactsLits.add(facts);
         }
-        Collections.shuffle(FactsLits);//перемшивает коллекцию значений
+        //перемшивает коллекцию значений
+        Collections.shuffle(FactsLits);
     }
 }

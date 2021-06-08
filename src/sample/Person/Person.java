@@ -3,7 +3,7 @@ package sample.Person;
 public class Person extends Gamer{
 
     protected String Comment;//Комментрий от игрока
-    protected int LifeCount;//Количество возможностей ошибится
+    protected int LifeCount;//Количество возможностей ошибиться
     protected int OurCount;//Количество ошибок
     //Конструктор класса
     public Person(int numberPerson, String nicname, String nameGame, int gameCount, String title,
@@ -23,7 +23,7 @@ public class Person extends Gamer{
         return Integer.toString(Number)+" "+Nicname+" "+ NameGame+" "+Integer.toString(GameCount)+" "+
                 Title+  " " + Integer.toString(LifeCount) + " " + Integer.toString(OurCount) +" "+ Comment;
     }
-
+    //возвращает значение Number
     public int getNumberPerson() {
         return Number;
     }
@@ -31,7 +31,7 @@ public class Person extends Gamer{
     public void setNumberPerson(int numberPerson) {
         Number = numberPerson;
     }
-    //возвращает значение Number
+    //возвращает значение Nicname
     public String getNicname() {
         return Nicname;
     }
@@ -39,19 +39,19 @@ public class Person extends Gamer{
     public void setNicname(String nicname) {
         Nicname = nicname;
     }
-    //возвращает значение Nicname
+    //возвращает значение  NameGame
     public String getNameGame() {
         return NameGame;
     }
-    //устанавливает значение Number
+    //устанавливает значение NameGame
     public void setNameGame(String nameGame) {
         NameGame = nameGame;
     }
-    //возвращает значение NameGame
+    //возвращает значение GameCount
     public int getGameCount() {
         return GameCount;
     }
-    //устанавливает значение NameGame
+    //устанавливает значение GameCount
     public void setGameCount(int gameCount) {
         GameCount = gameCount;
     }
