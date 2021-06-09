@@ -16,22 +16,6 @@ public class Winner extends Gamer{
         return Integer.toString(Number)+" "+Nicname+" "+ Title+  " " +NameGame+" "+Integer.toString(GameCount)
                 +  " " + FactNumber;
     }
-    // возвращает значение Number
-    public int getNumber() {
-        return Number;
-    }
-    //устанавливает значение Number
-    public void setNumber(int number) {
-        Number = number;
-    }
-    // возвращает значение Nicname
-    public String getNic() {
-        return Nicname;
-    }
-    //устанавливает значение Nicname
-    public void setNic(String nic) {
-        Nicname = nic;
-    }
     // возвращает значение Title
     public String getTitle() {
         return Title;
@@ -39,29 +23,5 @@ public class Winner extends Gamer{
     //устанавливает значение Title
     public void setTitle(String title) {
         Title = title;
-    }
-    // возвращает значение NameGame
-    public String getNameGame() {
-        return NameGame;
-    }
-    //устанавливает значение NameGame
-    public void setNameGame(String nameGame) {
-        NameGame = nameGame;
-    }
-    // возвращает значение GameCount
-    public int getTotalCount() {
-        return GameCount;
-    }
-    //устанавливает значение GameCount
-    public void setTotalCount(int totalCount) {
-        GameCount = totalCount;
-    }
-    // возвращает значение FactNumber
-    public int getFactNumber() {
-        return FactNumber;
-    }
-    //устанавливает значение FactNumber
-    public void setFactNumber(int factNumber) {
-        FactNumber = factNumber;
     }
 }

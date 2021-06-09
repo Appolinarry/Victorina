@@ -21,22 +21,6 @@ public class TitleCreator {
     public String  toString(){
         return Integer.toString(NumberTitle) + " " + NameGame + " " + Title + " " + " " + WinOrNot;
     }
-    //возвращает значение NumberTitle
-    public int getNumberTitle() {
-        return NumberTitle;
-    }
-    //устанавливает значение NumberTitle
-    public void setNumberTitle(int numberTitle) {
-        NumberTitle = numberTitle;
-    }
-    //возвращает значение NumberTitle
-    public String getNameGame() {
-        return NameGame;
-    }
-    //устанавливает значение NumberTitle
-    public void setNameGame(String nameGame) {
-        NameGame = nameGame;
-    }
     //возвращает значение Title
     public String getTitle() {
         return Title;
@@ -44,13 +28,5 @@ public class TitleCreator {
     //устанавливает значение Title
     public void setTitle(String title) {
         Title = title;
-    }
-    //возвращает значение WinOrNot
-    public String getWinOrNot() {
-        return WinOrNot;
-    }
-    //устанавливает значение WinOrNot
-    public void setWinOrNot(String winOrNot) {
-        WinOrNot = winOrNot;
     }
 }

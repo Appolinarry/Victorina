@@ -19,24 +19,12 @@ public class Facts {
     public int getNumber() {
         return Number;
     }
-    //устанавливает значение Number
-    public void setNumber(int number) {
-        Number = number;
-    }
     //возвращает значение FactContent
     public String getFactContent() {
         return FactContent;
     }
-    //устанавливает значение FactContent
-    public void setFactContent(String factContent) {
-        FactContent = factContent;
-    }
     //возвращает значение FotoFact
     public String getFotoFact() {
         return FotoFact;
-    }
-    //устанавливает значение FotoFact
-    public void setFotoFact(String fotoFact) {
-        FotoFact = fotoFact;
     }
 }
