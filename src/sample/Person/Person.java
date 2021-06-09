@@ -24,6 +24,22 @@ public class Person extends Gamer{
                 Title+  " " + Integer.toString(LifeCount) + " " + Integer.toString(OurCount) +" "+ Comment;
     }
 
+    //возвращает значение Number
+    public int getNumberPerson() {
+        return Number;
+    }
+    //возвращает значение Nicname
+    public String getNicname() {
+        return Nicname;
+    }
+    //возвращает значение  NameGame
+    public String getNameGame() {
+        return NameGame;
+    }
+    //возвращает значение GameCount
+    public int getGameCount() {
+        return GameCount;
+    }
     //возвращает значение Title
     public String getTitle() {
         return Title;
@@ -32,4 +48,12 @@ public class Person extends Gamer{
     public void setTitle(String title) {
         Title = title;
     }
+    //возвращает значение Comment
+    public String getComment() { return Comment;  }
+    //возвращает значение LifeCount
+    public int getLifeCount() {
+        return LifeCount;
+    }
+    //возвращает значение OurCount
+    public int getOurCount() {return OurCount;}
 }

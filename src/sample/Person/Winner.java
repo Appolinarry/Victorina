@@ -16,12 +16,28 @@ public class Winner extends Gamer{
         return Integer.toString(Number)+" "+Nicname+" "+ Title+  " " +NameGame+" "+Integer.toString(GameCount)
                 +  " " + FactNumber;
     }
+    // возвращает значение Number
+    public int getNumber() {
+        return Number;
+    }
+    // возвращает значение Nicname
+    public String getNic() {
+        return Nicname;
+    }
     // возвращает значение Title
     public String getTitle() {
         return Title;
     }
-    //устанавливает значение Title
-    public void setTitle(String title) {
-        Title = title;
+    // возвращает значение NameGame
+    public String getNameGame() {
+        return NameGame;
+    }
+    // возвращает значение GameCount
+    public int getTotalCount() {
+        return GameCount;
+    }
+    // возвращает значение FactNumber
+    public int getFactNumber() {
+        return FactNumber;
     }
 }
