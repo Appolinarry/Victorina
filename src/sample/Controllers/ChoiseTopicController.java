@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import sample.Person.BDPerson;
 import sample.Questons.BDVictorin;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -93,7 +94,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Hellow world!");
+            primaryStage.setTitle("Вход в игру");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -108,7 +109,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Результаты игр");
+            primaryStage.setTitle("Таблица результатов");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -123,7 +124,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Результаты игр");
+            primaryStage.setTitle("Таблица победителей");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -138,7 +139,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопросы про рыбок");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -160,7 +161,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про червячков");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -182,7 +183,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про паучкообразных");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -204,7 +205,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про деревья");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -226,7 +227,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про птичек");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -248,7 +249,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про географическтие открытия");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -270,7 +271,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про изобретения 20 века");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -292,7 +293,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про города в разных странах");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -314,7 +315,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про звезды");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -336,7 +337,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про сильное излучение");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -358,7 +359,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы про галактики");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -380,7 +381,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы по анотомии");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -402,7 +403,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы по химии");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -424,7 +425,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы по география");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -446,7 +447,7 @@ public class ChoiseTopicController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Вопроы по обществознание");
+            primaryStage.setTitle("Игра");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();

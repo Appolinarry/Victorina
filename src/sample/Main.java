@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //Вызов оконного интерфейса
         Parent root = FXMLLoader.load(getClass().getResource("Windows/sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Вход в игру");
         primaryStage.setScene(new Scene(root, 800, 400));
         primaryStage.setResizable(false);
         primaryStage.show();

@@ -20,11 +20,16 @@ public class Controller {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
-        BDPerson.connectionBDPerson();//Подключаем БД Person
-        BDPerson.newTablePerson();//создание таблички person
-        BDPerson.newTableWinner();//создание таблички winner
-        BDPerson.newTableTitle();//создание таблицы титулов
-        WelcomeButton.setOnAction(e->{//Переход на форму с котегориями вопросов
+        //Подключаем БД Person
+        BDPerson.connectionBDPerson();
+        //создание таблички person
+        BDPerson.newTablePerson();
+        //создание таблички winner
+        BDPerson.newTableWinner();
+        //создание таблицы титулов
+        BDPerson.newTableTitle();
+        //Переход на форму с категориями вопросов
+        WelcomeButton.setOnAction(e->{
             WelcomeButton.getScene().getWindow().hide();
             Stage primaryStage = new Stage();
             Parent root = null;
@@ -33,7 +38,7 @@ public class Controller {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Выбор игры");
+            primaryStage.setTitle("Основное меню");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         });

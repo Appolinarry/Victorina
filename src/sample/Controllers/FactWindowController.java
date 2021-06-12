@@ -47,7 +47,7 @@ public class FactWindowController {
             Parent root = loader.getRoot();
             stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Меню");
+            stage.setTitle("Основное меню");
             stage.setResizable(false);
             stage.show();
         });

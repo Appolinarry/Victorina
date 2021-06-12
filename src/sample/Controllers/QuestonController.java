@@ -205,7 +205,7 @@ public class QuestonController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Меню");
+            primaryStage.setTitle("Основное меню");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -255,7 +255,7 @@ public class QuestonController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            primaryStage.setTitle("Приз игры");
+            primaryStage.setTitle("Интересный факт");
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
